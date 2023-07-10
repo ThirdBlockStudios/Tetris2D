@@ -1,6 +1,6 @@
 # Tetris Project
 
-This project is a simple 2D Tetris game developed using the Godot game engine and implemented in GDScript. It includes various features such as a visible piece queue, music and sound effects, piece holding, and all the standard Tetris gameplay elements. This README.md file provides instructions on how to run and customize the project.
+This project is a simple 2D Tetris game developed by Third Block Studios using the Godot game engine and implemented in GDScript. It includes various features such as a visible piece queue, music and sound effects, piece holding, and all the standard Tetris gameplay elements. This README.md file provides instructions on how to run and customize the project.
 
 ![Tetris Demo](demo.gif)
 
@@ -24,7 +24,7 @@ This project is a simple 2D Tetris game developed using the Godot game engine an
 
 To run this project, you need to have the following software installed:
 
-- [Godot game engine](https://godotengine.org/) (version 3.3 or later)
+- [Godot game engine](https://godotengine.org/) (version 4.1 or later)
 
 ### Installation
 
