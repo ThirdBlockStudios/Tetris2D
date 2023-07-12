@@ -52,8 +52,9 @@ The project structure is organized as follows:
 - `audio/` - Stores audio files for sound effects and music
 - `res/` - Contains resource files such as fonts and textures
 - `scenes/` - Contains the game scenes
-  - `main/` - The main game scene and scripts
-- `ui/` - User interface scripts and scenes
+  - `grid/` - The main game board/grid
+  - `pieces/` - The game pieces (Tetriminos) and blocks
+  - `ui/` - User interface scripts and scenes
 - `utils/` - Utility scripts
 - `README.md` - Project README file
 - `project.godot` - Godot project file
