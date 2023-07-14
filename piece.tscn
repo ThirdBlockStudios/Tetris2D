@@ -1,35 +1,54 @@
-[gd_scene load_steps=3 format=3 uid="uid://bcv36hf5xpcga"]
+[gd_scene load_steps=3 format=3 uid="uid://csnrx0y046n76"]
 
 [ext_resource type="Script" path="res://piece.gd" id="1_y0d18"]
-[ext_resource type="PackedScene" uid="uid://babfigpw4shml" path="res://block.tscn" id="2_3gbvr"]
+[ext_resource type="PackedScene" uid="uid://dljx1w18vl31a" path="res://block.tscn" id="2_3gbvr"]
 
 [node name="Piece" type="Node2D"]
 script = ExtResource("1_y0d18")
 block_scene = ExtResource("2_3gbvr")
 
-[node name="Block" parent="." instance=ExtResource("2_3gbvr")]
-position = Vector2(0, 16)
+[node name="Block" parent="." groups=["blocks"] instance=ExtResource("2_3gbvr")]
+position = Vector2(16, -16)
 
-[node name="Block2" parent="." instance=ExtResource("2_3gbvr")]
-position = Vector2(0, 48)
+[node name="Block2" parent="." groups=["blocks"] instance=ExtResource("2_3gbvr")]
 
-[node name="pos_1" type="Node2D" parent="."]
-position = Vector2(32, 48)
+[node name="variable_block_position_1" type="Node2D" parent="."]
+position = Vector2(-16, -16)
 
-[node name="pos_2" type="Node2D" parent="."]
-position = Vector2(32, 16)
+[node name="variable_block_position_2" type="Node2D" parent="."]
+position = Vector2(-16, 16)
 
-[node name="pos_3" type="Node2D" parent="."]
-position = Vector2(-32, 48)
+[node name="variable_block_position_3" type="Node2D" parent="."]
+position = Vector2(48, -16)
 
-[node name="pos_4" type="Node2D" parent="."]
-position = Vector2(-32, 16)
+[node name="variable_block_position_4" type="Node2D" parent="."]
+position = Vector2(48, 16)
 
-[node name="pos_5" type="Node2D" parent="."]
-position = Vector2(0, 80)
+[node name="variable_block_position_5" type="Node2D" parent="."]
+position = Vector2(16, 48)
 
-[node name="pos_6" type="Node2D" parent="."]
-position = Vector2(0, 112)
+[node name="variable_block_position_6" type="Node2D" parent="."]
+position = Vector2(16, 80)
+
+[node name="rotation_center_0" type="Node2D" parent="."]
+
+[node name="rotation_center_1" type="Node2D" parent="."]
+position = Vector2(16, 16)
+
+[node name="rotation_center_2" type="Node2D" parent="."]
+position = Vector2(16, 16)
+
+[node name="rotation_center_3" type="Node2D" parent="."]
+position = Vector2(16, 16)
+
+[node name="rotation_center_4" type="Node2D" parent="."]
+position = Vector2(16, 16)
+
+[node name="rotation_center_5" type="Node2D" parent="."]
+position = Vector2(16, 16)
+
+[node name="rotation_center_6" type="Node2D" parent="."]
+position = Vector2(0, 32)
 
 [node name="Ticker" type="Timer" parent="."]
 
