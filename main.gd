@@ -2,11 +2,16 @@
 class_name MainScript
 extends Node
 
+@onready var piece_scene = load("res://piece.tscn")
 
 ## Called when the node enters the scene tree for the first time.
 func _ready():
-    ## Enables unhandled input (gameplay input) processing by the _unhandled_key_input virtual function.
-    set_process_unhandled_key_input(true)
+    
+    var initial_piece = piece_scene.instantiate()
+    initial_piece.setType("square")
+    initial_piece.position = Vector2(112, 0)
+    add_child(initial_piece)
+    
     pass  # Replace with function body.
 
 

@@ -1,6 +1,36 @@
-[gd_scene load_steps=2 format=3 uid="uid://dljx1w18vl31a"]
+[gd_scene load_steps=3 format=3 uid="uid://bcv36hf5xpcga"]
 
-[ext_resource type="Script" path="res://piece.gd" id="1_g8rwi"]
+[ext_resource type="Script" path="res://piece.gd" id="1_y0d18"]
+[ext_resource type="PackedScene" uid="uid://babfigpw4shml" path="res://block.tscn" id="2_3gbvr"]
 
-[node name="Piece" type="Node"]
-script = ExtResource("1_g8rwi")
+[node name="Piece" type="Node2D"]
+script = ExtResource("1_y0d18")
+block_scene = ExtResource("2_3gbvr")
+
+[node name="Block" parent="." instance=ExtResource("2_3gbvr")]
+position = Vector2(0, 16)
+
+[node name="Block2" parent="." instance=ExtResource("2_3gbvr")]
+position = Vector2(0, 48)
+
+[node name="pos_1" type="Node2D" parent="."]
+position = Vector2(32, 48)
+
+[node name="pos_2" type="Node2D" parent="."]
+position = Vector2(32, 16)
+
+[node name="pos_3" type="Node2D" parent="."]
+position = Vector2(-32, 48)
+
+[node name="pos_4" type="Node2D" parent="."]
+position = Vector2(-32, 16)
+
+[node name="pos_5" type="Node2D" parent="."]
+position = Vector2(0, 80)
+
+[node name="pos_6" type="Node2D" parent="."]
+position = Vector2(0, 112)
+
+[node name="Ticker" type="Timer" parent="."]
+
+[connection signal="timeout" from="Ticker" to="." method="_on_tick"]
