@@ -14,6 +14,17 @@ config/name="Tetris2D"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/viewport_width=480
+window/size/viewport_height=640
+window/stretch/mode="canvas_items"
+window/handheld/orientation=1
+
 [dotnet]
 
 project/assembly_name="Tetris2D"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
