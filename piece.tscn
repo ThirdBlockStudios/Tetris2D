@@ -10,46 +10,73 @@ block_scene = ExtResource("2_3gbvr")
 
 [node name="Center" type="Sprite2D" parent="."]
 z_index = 1
+position = Vector2(0, 6.77626e-21)
 scale = Vector2(0.35, 0.35)
 texture = ExtResource("3_yp75q")
 
 [node name="rotation_center_1" type="Node2D" parent="." groups=["rotation_centers"]]
 z_index = 1
 z_as_relative = false
+position = Vector2(0, -32)
 
 [node name="rotation_center_2" type="Node2D" parent="." groups=["rotation_centers"]]
 z_index = 1
 z_as_relative = false
-position = Vector2(16, 16)
+position = Vector2(-16, -16)
 
 [node name="rotation_center_3" type="Node2D" parent="." groups=["rotation_centers"]]
 z_index = 1
 z_as_relative = false
-position = Vector2(0, 32)
 
-[node name="Block" parent="." groups=["blocks"] instance=ExtResource("2_3gbvr")]
-position = Vector2(16, -16)
+[node name="block_position_a2" type="Node2D" parent="."]
+position = Vector2(-16, -48)
 
-[node name="Block2" parent="." groups=["blocks"] instance=ExtResource("2_3gbvr")]
+[node name="block_position_a1" type="Node2D" parent="."]
+position = Vector2(-48, -48)
 
-[node name="variable_block_position_1" type="Node2D" parent="."]
+[node name="block_position_a3" type="Node2D" parent="."]
+position = Vector2(16, -48)
+
+[node name="block_position_a4" type="Node2D" parent="."]
+position = Vector2(48, -48)
+
+[node name="block_position_b1" type="Node2D" parent="."]
+position = Vector2(-48, -16)
+
+[node name="block_position_b2" type="Node2D" parent="."]
 position = Vector2(-16, -16)
 
-[node name="variable_block_position_2" type="Node2D" parent="."]
-position = Vector2(-16, 16)
+[node name="block_position_b3" type="Node2D" parent="."]
+position = Vector2(16, -16)
 
-[node name="variable_block_position_3" type="Node2D" parent="."]
+[node name="block_position_b4" type="Node2D" parent="."]
 position = Vector2(48, -16)
 
-[node name="variable_block_position_4" type="Node2D" parent="."]
+[node name="block_position_c1" type="Node2D" parent="."]
+position = Vector2(-48, 16)
+
+[node name="block_position_c2" type="Node2D" parent="."]
+position = Vector2(-16, 16)
+
+[node name="block_position_c3" type="Node2D" parent="."]
+position = Vector2(16, 16)
+
+[node name="block_position_c4" type="Node2D" parent="."]
 position = Vector2(48, 16)
 
-[node name="variable_block_position_5" type="Node2D" parent="."]
+[node name="block_position_d1" type="Node2D" parent="."]
+position = Vector2(-48, 48)
+
+[node name="block_position_d2" type="Node2D" parent="."]
+position = Vector2(-16, 48)
+
+[node name="block_position_d3" type="Node2D" parent="."]
 position = Vector2(16, 48)
 
-[node name="variable_block_position_6" type="Node2D" parent="."]
-position = Vector2(16, 80)
+[node name="block_position_d4" type="Node2D" parent="."]
+position = Vector2(48, 48)
 
 [node name="Ticker" type="Timer" parent="."]
+wait_time = 0.5
 
 [connection signal="timeout" from="Ticker" to="." method="_on_tick"]

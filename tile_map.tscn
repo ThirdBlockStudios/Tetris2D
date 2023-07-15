@@ -72,11 +72,11 @@ texture_region_size = Vector2i(32, 32)
 7:7/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_8s885"]
+tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_gyxo3")
 
 [node name="TileMap" type="TileMap"]
 tile_set = SubResource("TileSet_8s885")
-cell_quadrant_size = 32
 format = 2
-layer_0/tile_data = PackedInt32Array(2359324, 0, 0, 2228252, 0, 0, 2293788, 0, 1, 2097180, 0, 0, 2162716, 0, 1, 1966108, 0, 0, 2031644, 0, 1, 1835036, 0, 0, 1900572, 0, 1, 1376284, 0, 1)
+layer_0/tile_data = PackedInt32Array(0, 0, 0, 1, 0, 0, 2, 0, 0, 65538, 0, 0, 131074, 0, 0, 131075, 0, 0, 196611, 0, 0, 262147, 0, 0, 327683, 0, 0, 393219, 0, 0, 458755, 0, 0, 458756, 0, 0, 524292, 0, 0, 589828, 0, 0, 589829, 0, 0, 655365, 0, 0, 720902, 0, 0, 786438, 0, 0, 851974, 0, 0, 851975, 0, 0, 917511, 0, 0, 983047, 0, 0, 983048, 0, 0, 1048584, 0, 0, 1114120, 0, 0, 1114121, 0, 0)
 script = ExtResource("2_knasf")
