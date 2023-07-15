@@ -5,7 +5,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3pjo1"]
 size = Vector2(32, 32)
 
-[node name="Block" type="Node2D"]
+[node name="Block" type="Area2D"]
 position = Vector2(16, 16)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

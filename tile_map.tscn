@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dgo81uh8btghr"]
+[gd_scene load_steps=22 format=3 uid="uid://dgo81uh8btghr"]
 
 [ext_resource type="Texture2D" uid="uid://c3mf0kbb3bnh7" path="res://assets/Yellow.png" id="1_kq8sf"]
 [ext_resource type="Texture2D" uid="uid://dtffd0sdj1mbt" path="res://assets/Purple.png" id="2_kemyn"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://c03j7fe7qliyv" path="res://assets/Cyan.png" id="7_ofvc5"]
 [ext_resource type="Texture2D" uid="uid://ip1pp1wcaes" path="res://assets/Ghost.png" id="8_tr8si"]
 [ext_resource type="Texture2D" uid="uid://bbb04etr216g1" path="res://assets/Center.png" id="9_dg7oh"]
+[ext_resource type="PackedScene" uid="uid://ilr6mmygf2yg" path="res://boundary.tscn" id="11_pws2j"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_stk8m"]
 texture = ExtResource("1_kq8sf")
@@ -195,5 +196,13 @@ sources/8 = SubResource("TileSetAtlasSource_8qw1r")
 [node name="TileMap" type="TileMap"]
 tile_set = SubResource("TileSet_8s885")
 format = 2
-layer_0/tile_data = PackedInt32Array(1245184, 1, 0, 1245185, 1, 0, 1245186, 1, 0, 1179649, 1, 0, 1245187, 2, 0, 1245188, 2, 0, 1245189, 2, 0, 1179653, 2, 0, 1114115, 0, 0, 1179651, 0, 0, 1179652, 0, 0, 1114116, 0, 0, 1245193, 3, 0, 1179657, 3, 0, 1114121, 3, 0, 1048585, 3, 0, 1048577, 4, 0, 1114113, 4, 0, 1114114, 4, 0, 1179650, 4, 0, 1179654, 0, 0, 1245190, 0, 0, 1179655, 0, 0, 1245191, 0, 0, 1114117, 1, 0, 1114118, 1, 0, 1114119, 1, 0, 1048582, 1, 0, 983040, 3, 0, 1048576, 3, 0, 1114112, 3, 0, 1179648, 3, 0)
 script = ExtResource("2_knasf")
+
+[node name="Boundary" parent="." instance=ExtResource("11_pws2j")]
+
+[node name="Boundary2" parent="." instance=ExtResource("11_pws2j")]
+position = Vector2(368, 320)
+
+[node name="Boundary3" parent="." instance=ExtResource("11_pws2j")]
+position = Vector2(160, 688)
+rotation = 1.5708
