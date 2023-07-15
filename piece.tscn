@@ -1,12 +1,31 @@
-[gd_scene load_steps=4 format=3 uid="uid://csnrx0y046n76"]
+[gd_scene load_steps=4 format=3 uid="uid://fys2o5644s17"]
 
 [ext_resource type="Script" path="res://piece.gd" id="1_y0d18"]
 [ext_resource type="PackedScene" uid="uid://dljx1w18vl31a" path="res://block.tscn" id="2_3gbvr"]
-[ext_resource type="Texture2D" uid="uid://desqnywfcqamj" path="res://purple-icon.png" id="3_eh86v"]
+[ext_resource type="Texture2D" uid="uid://bbb04etr216g1" path="res://assets/Center.png" id="3_yp75q"]
 
 [node name="Piece" type="Node2D"]
 script = ExtResource("1_y0d18")
 block_scene = ExtResource("2_3gbvr")
+
+[node name="Center" type="Sprite2D" parent="."]
+z_index = 1
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("3_yp75q")
+
+[node name="rotation_center_1" type="Node2D" parent="." groups=["rotation_centers"]]
+z_index = 1
+z_as_relative = false
+
+[node name="rotation_center_2" type="Node2D" parent="." groups=["rotation_centers"]]
+z_index = 1
+z_as_relative = false
+position = Vector2(16, 16)
+
+[node name="rotation_center_3" type="Node2D" parent="." groups=["rotation_centers"]]
+z_index = 1
+z_as_relative = false
+position = Vector2(0, 32)
 
 [node name="Block" parent="." groups=["blocks"] instance=ExtResource("2_3gbvr")]
 position = Vector2(16, -16)
@@ -30,60 +49,6 @@ position = Vector2(16, 48)
 
 [node name="variable_block_position_6" type="Node2D" parent="."]
 position = Vector2(16, 80)
-
-[node name="rotation_center_0" type="Node2D" parent="."]
-
-[node name="Sprite2D" type="Sprite2D" parent="rotation_center_0"]
-scale = Vector2(0.03, 0.03)
-texture = ExtResource("3_eh86v")
-
-[node name="rotation_center_1" type="Node2D" parent="."]
-position = Vector2(16, 16)
-
-[node name="Sprite2D2" type="Sprite2D" parent="rotation_center_1"]
-position = Vector2(-16, -16)
-scale = Vector2(0.03, 0.03)
-texture = ExtResource("3_eh86v")
-
-[node name="rotation_center_2" type="Node2D" parent="."]
-position = Vector2(16, 16)
-
-[node name="Sprite2D3" type="Sprite2D" parent="rotation_center_2"]
-position = Vector2(-16, -16)
-scale = Vector2(0.03, 0.03)
-texture = ExtResource("3_eh86v")
-
-[node name="rotation_center_3" type="Node2D" parent="."]
-position = Vector2(16, 16)
-
-[node name="Sprite2D4" type="Sprite2D" parent="rotation_center_3"]
-position = Vector2(-16, -16)
-scale = Vector2(0.03, 0.03)
-texture = ExtResource("3_eh86v")
-
-[node name="rotation_center_4" type="Node2D" parent="."]
-position = Vector2(16, 16)
-
-[node name="Sprite2D5" type="Sprite2D" parent="rotation_center_4"]
-position = Vector2(-16, -16)
-scale = Vector2(0.03, 0.03)
-texture = ExtResource("3_eh86v")
-
-[node name="rotation_center_5" type="Node2D" parent="."]
-position = Vector2(16, 16)
-
-[node name="Sprite2D6" type="Sprite2D" parent="rotation_center_5"]
-position = Vector2(-16, -16)
-scale = Vector2(0.03, 0.03)
-texture = ExtResource("3_eh86v")
-
-[node name="rotation_center_6" type="Node2D" parent="."]
-position = Vector2(0, 32)
-
-[node name="Sprite2D7" type="Sprite2D" parent="rotation_center_6"]
-position = Vector2(0, -32)
-scale = Vector2(0.03, 0.03)
-texture = ExtResource("3_eh86v")
 
 [node name="Ticker" type="Timer" parent="."]
 
