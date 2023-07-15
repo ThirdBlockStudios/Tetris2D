@@ -44,8 +44,7 @@ func _ready():
                 $block_position_b2.position, 
                 $block_position_b3.position
             ],
-            "rotation_center": $rotation_center_2,
-            "initial_offset": Vector2(0, 0)
+            "rotation_center": $rotation_center_2            
         },
         {
             "name": "l_right",
@@ -55,8 +54,7 @@ func _ready():
                 $block_position_b2.position, 
                 $block_position_b3.position
             ],
-            "rotation_center": $rotation_center_2,
-            "initial_offset": Vector2(0, 0)
+            "rotation_center": $rotation_center_2            
         },
         {
             "name": "l_left",
@@ -66,8 +64,7 @@ func _ready():
                 $block_position_b2.position, 
                 $block_position_b3.position
             ],
-            "rotation_center": $rotation_center_2,
-            "initial_offset": Vector2(0, 0)
+            "rotation_center": $rotation_center_2            
         },
         {
             "name": "zag_right",
@@ -77,8 +74,7 @@ func _ready():
                 $block_position_b1.position, 
                 $block_position_b2.position 
             ],
-            "rotation_center": $rotation_center_2,
-            "initial_offset": Vector2(0, 0)
+            "rotation_center": $rotation_center_2            
         },
         {
             "name": "zag_left",
@@ -88,8 +84,7 @@ func _ready():
                 $block_position_b2.position, 
                 $block_position_b3.position 
             ],
-            "rotation_center": $rotation_center_2,
-            "initial_offset": Vector2(0, 0)
+            "rotation_center": $rotation_center_2
         },
         {
             "name": "line",
@@ -109,7 +104,7 @@ func _ready():
     setBlockTextures()  # Color blocks
 
     # Aligns pieces with rotation centers not in centers of blocks
-    if (block_type_data[type].initial_offset):
+    if (block_type_data[type].get("initial_offset") != null):
         self.position += block_type_data[type].initial_offset
         
     print(block_type_data[type].name) # Remove after testing.
