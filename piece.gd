@@ -33,7 +33,8 @@ func _ready():
                 $block_position_b2.position, 
                 $block_position_b3.position
             ],
-            "rotation_center": $rotation_center_1
+            "rotation_center": $rotation_center_1,
+            "initial_offset": Vector2(-16, -16)
         },
         {
             "name": "tee",
@@ -43,7 +44,8 @@ func _ready():
                 $block_position_b2.position, 
                 $block_position_b3.position
             ],
-            "rotation_center": $rotation_center_2
+            "rotation_center": $rotation_center_2,
+            "initial_offset": Vector2(0, 0)
         },
         {
             "name": "l_right",
@@ -53,7 +55,8 @@ func _ready():
                 $block_position_b2.position, 
                 $block_position_b3.position
             ],
-            "rotation_center": $rotation_center_2
+            "rotation_center": $rotation_center_2,
+            "initial_offset": Vector2(0, 0)
         },
         {
             "name": "l_left",
@@ -63,7 +66,8 @@ func _ready():
                 $block_position_b2.position, 
                 $block_position_b3.position
             ],
-            "rotation_center": $rotation_center_2
+            "rotation_center": $rotation_center_2,
+            "initial_offset": Vector2(0, 0)
         },
         {
             "name": "zag_right",
@@ -73,7 +77,8 @@ func _ready():
                 $block_position_b1.position, 
                 $block_position_b2.position 
             ],
-            "rotation_center": $rotation_center_2
+            "rotation_center": $rotation_center_2,
+            "initial_offset": Vector2(0, 0)
         },
         {
             "name": "zag_left",
@@ -83,7 +88,8 @@ func _ready():
                 $block_position_b2.position, 
                 $block_position_b3.position 
             ],
-            "rotation_center": $rotation_center_2
+            "rotation_center": $rotation_center_2,
+            "initial_offset": Vector2(0, 0)
         },
         {
             "name": "line",
@@ -93,7 +99,8 @@ func _ready():
                 $block_position_b3.position, 
                 $block_position_b4.position 
             ],
-            "rotation_center": $rotation_center_3
+            "rotation_center": $rotation_center_3,
+            "initial_offset": Vector2(-16, -16)
         }
     ]
     
@@ -101,6 +108,10 @@ func _ready():
     setBlockRotationCenters()  # Orient child blocks to (0,0)
     setBlockTextures()  # Color blocks
 
+    # Aligns pieces with rotation centers not in centers of blocks
+    if (block_type_data[type].initial_offset):
+        self.position += block_type_data[type].initial_offset
+        
     print(block_type_data[type].name) # Remove after testing.
 
     $Ticker.start()  # Fall
