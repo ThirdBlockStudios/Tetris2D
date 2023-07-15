@@ -24,6 +24,8 @@ var block_textures = [
 
 ## Initialize piece.
 func _ready():
+    block_scene.connect("body_entered", _on_collide)
+    
     block_type_data = [
         {
             "name": "square",
@@ -151,6 +153,8 @@ func setBlockTextures():
         if child.is_in_group("blocks"):
             child.get_node("Sprite2D").texture = block_textures[type]  # Textures autoloaded
 
+func _on_collide(sig: Signal):
+    print("collided")
 
 ## Controls piece falling.
 func _on_tick():
