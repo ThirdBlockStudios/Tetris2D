@@ -6,12 +6,8 @@ extends Node
 
 var initial_piece
 
-func _init():    
-    print("main 0")
-
 ## Called when the node enters the scene tree for the first time.
 func _ready():
-    print("main 1")
     randomize() ## randomize rng seed
     initial_piece = piece_scene.instantiate()
     initial_piece.setType(randi() % 7) ## randomize piece type

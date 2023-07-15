@@ -129,12 +129,11 @@ func setBlockRotationCenters():
         if child.is_in_group("blocks"):
             child.position += rotation_adjustment
 
+## Color blocks
 func setBlockTextures():
     for child in get_children():
         if child.is_in_group("blocks"):
             child.get_node("Sprite2D").texture = block_textures[type] ## Textures autoloaded
-            pass
-    pass
 
 ## Controls piece falling
 func _on_tick():
