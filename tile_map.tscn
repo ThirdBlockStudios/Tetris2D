@@ -12,8 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://bbb04etr216g1" path="res://assets/Center.png" id="9_dg7oh"]
 [ext_resource type="PackedScene" uid="uid://ilr6mmygf2yg" path="res://boundary.tscn" id="11_pws2j"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_stk8m"]
-texture = ExtResource("1_kq8sf")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gyxo3"]
+texture = ExtResource("1_fk3gp")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -182,27 +182,15 @@ texture_region_size = Vector2i(32, 32)
 
 [sub_resource type="TileSet" id="TileSet_8s885"]
 tile_size = Vector2i(32, 32)
-physics_layer_0/collision_layer = 1
-sources/4 = SubResource("TileSetAtlasSource_h6ehc")
-sources/0 = SubResource("TileSetAtlasSource_stk8m")
-sources/1 = SubResource("TileSetAtlasSource_w7dg2")
-sources/6 = SubResource("TileSetAtlasSource_184hx")
-sources/2 = SubResource("TileSetAtlasSource_l4vw4")
-sources/5 = SubResource("TileSetAtlasSource_neovy")
-sources/3 = SubResource("TileSetAtlasSource_e26bw")
-sources/7 = SubResource("TileSetAtlasSource_c45vx")
-sources/8 = SubResource("TileSetAtlasSource_8qw1r")
+sources/0 = SubResource("TileSetAtlasSource_gyxo3")
 
 [node name="TileMap" type="TileMap"]
 tile_set = SubResource("TileSet_8s885")
 format = 2
 script = ExtResource("2_knasf")
 
-[node name="Boundary" parent="." instance=ExtResource("11_pws2j")]
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
 
-[node name="Boundary2" parent="." instance=ExtResource("11_pws2j")]
-position = Vector2(368, 320)
-
-[node name="Boundary3" parent="." instance=ExtResource("11_pws2j")]
-position = Vector2(160, 688)
-rotation = 1.5708
+[connection signal="timeout" from="Timer" to="." method="Board_playTiles"]
