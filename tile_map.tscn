@@ -5,6 +5,7 @@
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gyxo3"]
 texture = ExtResource("1_fk3gp")
+texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -263,10 +264,16 @@ texture = ExtResource("1_fk3gp")
 15:15/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_8s885"]
+tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_gyxo3")
 
 [node name="TileMap" type="TileMap"]
 tile_set = SubResource("TileSet_8s885")
 format = 2
-layer_0/tile_data = PackedInt32Array(2359324, 0, 0, 2228252, 0, 0, 2293788, 0, 1, 2097180, 0, 0, 2162716, 0, 1, 1966108, 0, 0, 2031644, 0, 1, 1835036, 0, 0, 1900572, 0, 1, 1376284, 0, 1)
 script = ExtResource("2_knasf")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="Board_playTiles"]
