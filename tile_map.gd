@@ -66,28 +66,12 @@ func Board_updateRow(row: int, step: int):
 
 ## Piece processing logic when we need to update the board state.
 func Board_playTiles():
-	# Testing clearing by hardcoding a 5-high I block with base at (8, 19).
-	var hardcode_block_x = 8
-	var hardcode_block_y = 19
-
-	# Rendering.
-	set_cell(0, Vector2i(hardcode_block_x, hardcode_block_y), 0, Vector2i(0, 0), 0)
-	set_cell(0, Vector2i(hardcode_block_x, hardcode_block_y - 1), 0, Vector2i(0, 0), 0)
-	set_cell(0, Vector2i(hardcode_block_x, hardcode_block_y - 2), 0, Vector2i(0, 0), 0)
-	set_cell(0, Vector2i(hardcode_block_x, hardcode_block_y - 3), 0, Vector2i(0, 0), 0)
-	set_cell(0, Vector2i(hardcode_block_x, hardcode_block_y - 4), 0, Vector2i(0, 0), 0)
-	board[hardcode_block_x][hardcode_block_y] = true
-	board[hardcode_block_x][hardcode_block_y - 1] = true
-	board[hardcode_block_x][hardcode_block_y - 2] = true
-	board[hardcode_block_x][hardcode_block_y - 3] = true
-	board[hardcode_block_x][hardcode_block_y - 4] = true
-
 	var rows_processed = 0
-
+	var bottom_most_row = dimensions.y - 1
 	# Processing from the bottom to the top.
-	while rows_processed < hardcode_block_y:
-		if Board_isRowFull(hardcode_block_y - rows_processed):
-			Board_clearRow(hardcode_block_y - rows_processed)
-			Board_updateRow(hardcode_block_y - rows_processed, 1)
+	while rows_processed < bottom_most_row:
+		if Board_isRowFull(bottom_most_row - rows_processed):
+			Board_clearRow(bottom_most_row - rows_processed)
+			Board_updateRow(bottom_most_row - rows_processed, 1)
 		else:
 			rows_processed += 1
