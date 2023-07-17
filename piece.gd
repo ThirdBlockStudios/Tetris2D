@@ -6,7 +6,7 @@ extends Node2D
 ## Represents piece type as name of piece.
 var type: int
 var tile_map: TileMap
-var blocks: Array[Vector2i]
+var blocks: Array[Vector2]
 
 ## Holds block arrangements as JSON.
 var block_type_data

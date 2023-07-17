@@ -37,7 +37,7 @@ func Board_clearPiece(piece: Piece):
         erase_cell(0, Vector2i(cell_position))
 
 
-func Board_isMoveValid(piece: Piece, direction: Vector2i):
+func Board_isMoveValid(piece: Piece, direction: Vector2):
     for block_position in piece.blocks:
         var new_cell_position = block_position + direction
         if new_cell_position.x < 0 or new_cell_position.x >= dimensions.x or new_cell_position.y >= dimensions.y:
