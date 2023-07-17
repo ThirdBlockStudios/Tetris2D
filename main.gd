@@ -10,9 +10,12 @@ var initial_piece
 
 ## Called when the node enters the scene tree for the first time.
 func _ready():
+    var tile_map = get_node("TileMap")
+    
     randomize()  ## randomize rng seed
     initial_piece = piece_scene.instantiate()
     initial_piece.setType(randi() % 7)  ## randomize piece type
+    initial_piece.setTileMap(tile_map)
     initial_piece.position = Vector2(144, -16)  ## place block at "center" top
     add_child(initial_piece)
     pass  # Replace with function body.
@@ -24,9 +27,6 @@ func _unhandled_key_input(event: InputEvent):
         spawn_new()
     pass
 
-## Converts game coordinates to grid coordinates
-func convert(game_coordinates: Vector2):
-    return Vector2((-16 + game_coordinates.x) / 32, (-16 + game_coordinates.y) / 32)
 
 ## Test function for spawning a new piece
 func spawn_new():

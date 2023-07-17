@@ -23,6 +23,29 @@ func _ready():
         board[cell.x][cell.y] = true
 
 
+func Board_setPiece(piece: Piece, locked = false):
+    for block_position in piece.blocks:
+        var cell_position = block_position + piece.position
+        if locked:
+            board[cell_position.x][cell_position.y] = true
+        set_cell(0, Vector2i(cell_position), piece.tile_id, Vector2i(0, 0), 0)
+
+
+func Board_clearPiece(piece: Piece):
+    for block_position in piece.blocks:
+        var cell_position = block_position + piece.position
+        erase_cell(0, Vector2i(cell_position))
+
+
+func Board_isMoveValid(piece: Piece, direction: Vector2i):
+    for block_position in piece.blocks:
+        var new_cell_position = block_position + direction
+        if new_cell_position.x < 0 or new_cell_position.x >= dimensions.x or new_cell_position.y >= dimensions.y:
+            return false
+        if board[new_cell_position.x][new_cell_position.y]: # and tile_position.y >= 0 and tile_position.x >= 0:
+            return false
+    return true
+
 ## Checks if the given row is full.
 func Board_isRowFull(row: int) -> bool:
     var is_full = true

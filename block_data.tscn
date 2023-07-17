@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://ed0vkavy372c"]
+
+[sub_resource type="GDScript" id="GDScript_sgb5c"]
+script/source = "class_name BlockData
+extends Node
+
+"
+
+[node name="Data" type="Node"]
+script = SubResource("GDScript_sgb5c")

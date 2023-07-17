@@ -1,11 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://c5471t4tipupa"]
+[gd_scene load_steps=3 format=3 uid="uid://c5471t4tipupa"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_ufnvx"]
+[ext_resource type="PackedScene" uid="uid://dgo81uh8btghr" path="res://tile_map.tscn" id="2_smam3"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_ufnvx")
 
 [node name="TickTimer" type="Timer" parent="."]
 wait_time = 0.25
+
+[node name="TileMap" parent="." instance=ExtResource("2_smam3")]
 
 [connection signal="timeout" from="TickTimer" to="." method="_on_tick"]
