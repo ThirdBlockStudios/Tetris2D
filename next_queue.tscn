@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dsb2gb30c8b4r"]
+
+[ext_resource type="Script" path="res://next_queue.gd" id="1_g3qbe"]
+
+[node name="NextQueue" type="TileMap"]
+format = 2
+script = ExtResource("1_g3qbe")

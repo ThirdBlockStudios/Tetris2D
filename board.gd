@@ -1,4 +1,4 @@
-class_name Board
+class_name MainBoard
 extends TileMap
 
 # Local variables.
@@ -8,8 +8,6 @@ var dimensions = Vector2i(10, 20)
 
 # 2D game board to store piece positions and state.
 var board = []
-
-
 
 ## Called when the node enters the scene tree for the first time.
 func _ready():
