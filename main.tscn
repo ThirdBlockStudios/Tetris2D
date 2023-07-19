@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://mu87cwkf78ew" path="res://piece.tscn" id="3_7ih7w"]
 [ext_resource type="PackedScene" uid="uid://dsb2gb30c8b4r" path="res://next_queue.tscn" id="4_tt8a5"]
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node" groups=["main"]]
 script = ExtResource("1_ufnvx")
 
 [node name="TickTimer" type="Timer" parent="."]

@@ -14,6 +14,9 @@
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_stk8m"]
 texture = ExtResource("1_kq8sf")
 texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w7dg2"]
 texture = ExtResource("2_kemyn")
@@ -197,5 +200,3 @@ script = ExtResource("10_bfnwc")
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
 autostart = true
-
-[connection signal="timeout" from="Timer" to="." method="play_tiles"]

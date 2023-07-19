@@ -1,6 +1,7 @@
 class_name GameData
 extends Node
 
+
 enum TETROMINO {
     square,
     tee,
@@ -11,9 +12,10 @@ enum TETROMINO {
     line
 }
 
-const cosine = cos(PI / 2) ## =0
-const sine = sin(PI / 2) ## =1
-const RotationMatrix = [0, 1, -1, 0]
+
+const cosine = cos(PI / 2) ## = 0
+const sine = sin(PI / 2) ## = 1
+const rotation_matrix = [cosine, sine, -sine, cosine]
 
 
 const tile_ids = {
@@ -26,7 +28,8 @@ const tile_ids = {
     TETROMINO.line: 6
 }
 
-const Cells = {
+
+const blocks = {
     TETROMINO.square: [ Vector2( 0, 0), Vector2( 1, 0), Vector2(0, 1), Vector2(1, 1) ],
     TETROMINO.tee: [ Vector2(-1, 0), Vector2(0, 0), Vector2(0, -1), Vector2(1, 0) ],
     TETROMINO.l_left: [ Vector2( -1, -1), Vector2(-1, 0), Vector2( 0, 0), Vector2( 1, 0) ],
@@ -34,4 +37,15 @@ const Cells = {
     TETROMINO.zag_right: [ Vector2(-1, 0), Vector2( 0, 0), Vector2( 0, -1), Vector2( 1, -1) ],
     TETROMINO.zag_left: [ Vector2( -1, -1), Vector2( 0, -1), Vector2(0, 0), Vector2( 1, 0) ],
     TETROMINO.line: [ Vector2(-1, 0), Vector2( 0, 0), Vector2( 1, 0), Vector2( 2, 0) ]
+}
+
+
+const center_offset = {
+    TETROMINO.square: Vector2(0.5, 0.5),
+    TETROMINO.tee: Vector2(0, 0),
+    TETROMINO.l_left: Vector2(0, 0),
+    TETROMINO.l_right: Vector2(0, 0),
+    TETROMINO.zag_right: Vector2(0, 0),
+    TETROMINO.zag_left: Vector2(0, 0),
+    TETROMINO.line: Vector2(0.5, -0.5)
 }

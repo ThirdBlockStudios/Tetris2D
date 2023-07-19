@@ -11,33 +11,40 @@ var board = []
 
 ## Called when the node enters the scene tree for the first time.
 func _ready():
+    reset_board()
+
+
+func reset_board():
+    board.clear()
     for x in range(dimensions.x):
         board.append(Array())
         for y in range(dimensions.y):
             board[x].append(0)
-    # Mark all currently used cells in the board with their coordinates.
-    var used_cells = get_used_cells(0)
-    for cell in used_cells:
-        board[cell.x][cell.y] = true
 
 
 func Board_setPiece(piece: Piece, locked = false):
     for block_position in piece.blocks:
-        var cell_position = block_position + piece.position
+        var draw_position = block_position + piece.position
         if locked:
-            board[cell_position.x][cell_position.y] = true
-        set_cell(0, Vector2i(cell_position), piece.tile_id, Vector2i(0, 0), 0)
+            printBoard()
+            board[draw_position.x][draw_position.y] = true
+        set_cell(0, Vector2i(draw_position), piece.tile_id, Vector2i(0, 0), 0)
+
+
+func printBoard():
+    for col in dimensions.x:
+        print(board[col])
 
 
 func Board_clearPiece(piece: Piece):
     for block_position in piece.blocks:
-        var cell_position = block_position + piece.position
-        erase_cell(0, Vector2i(cell_position))
+        var erase_position = block_position + piece.position
+        erase_cell(0, Vector2i(erase_position))
 
 
-func Board_isMoveValid(piece: Piece, direction: Vector2):
+func Board_isMoveValid(piece: Piece, translation: Vector2):
     for block_position in piece.blocks:
-        var new_cell_position = block_position + direction
+        var new_cell_position = block_position + translation
         if new_cell_position.x < 0 or new_cell_position.x >= dimensions.x or new_cell_position.y >= dimensions.y:
             return false
         if board[new_cell_position.x][new_cell_position.y]: # and tile_position.y >= 0 and tile_position.x >= 0:
@@ -88,12 +95,11 @@ func Board_updateRow(row: int, step: int):
 
 ## Piece processing logic when we need to update the board state.
 func Board_playTiles():
-    var rows_processed = 0
-    var bottom_most_row = dimensions.y - 1
+    var current_row = dimensions.y - 1 # start at bottom
     # Processing from the bottom to the top.
-    while rows_processed < bottom_most_row:
-        if Board_isRowFull(bottom_most_row - rows_processed):
-            Board_clearRow(bottom_most_row - rows_processed)
-            Board_updateRow(bottom_most_row - rows_processed, 1)
+    while current_row >= 0:
+        if Board_isRowFull(current_row):
+            Board_clearRow(current_row)
+            Board_updateRow(current_row, 1)
         else:
-            rows_processed += 1
+            current_row -= 1

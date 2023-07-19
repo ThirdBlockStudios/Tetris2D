@@ -8,6 +8,6 @@ script = ExtResource("1_y0d18")
 block_scene = ExtResource("2_3gbvr")
 
 [node name="Ticker" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.05
 
 [connection signal="timeout" from="Ticker" to="." method="_on_tick"]

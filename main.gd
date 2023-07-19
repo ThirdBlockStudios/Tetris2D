@@ -27,32 +27,33 @@ var tetrominoes = {
 
 ## Start game. Called when the node enters the scene tree for the first time.
 func _ready():
-    board = get_node("Board")
-    piece = get_tree().get_first_node_in_group('Piece')
+    print("cosine:", GameData.cosine)
+    print("sine:", GameData.sine)
+    board = get_tree().get_first_node_in_group('board')
+    piece = get_tree().get_first_node_in_group('piece')
     
     randomize()  # randomize rng seed
     
     # Set game constants (cell arrangements, tile type map)
     for i in GameData.TETROMINO:
         tetrominoes[GameData.TETROMINO[i]] = {
-            "cells": GameData.Cells[GameData.TETROMINO[i]],
-            "tetromino_type": GameData.TETROMINO[i],
-            "tile_id": GameData.tile_ids[GameData.TETROMINO[i]]
+            "type": GameData.TETROMINO[i],
+            "blocks": GameData.blocks[GameData.TETROMINO[i]],
+            "tile_id": GameData.tile_ids[GameData.TETROMINO[i]],
+            "center_offset": GameData.center_offset[GameData.TETROMINO[i]]
         }
-    start_grid()
+    board.reset_board()
     spawn_piece()
 
 
 func game_over():
-    board.clear()
-    start_grid()
+    board.reset_board()
     spawn_piece()
 #    held_piece = null
 #    held_piece_board.clear()
 
-func start_grid():
-    pass
-    
+
+
 
 func spawn_piece():
     if next_queue.size() < queue_size:
@@ -61,7 +62,7 @@ func spawn_piece():
             next_queue.append(random_int)
     var current_piece = next_queue.pop_front()
     var data = tetrominoes[current_piece]
-    next_queue_board.initialize(next_queue) # TODO
+    next_queue_board.initialize( next_queue) # TODO
     piece.initialize(spawn_position, data)
     if board.Board_isMoveValid(piece, spawn_position):
         board.Board_setPiece(piece)
