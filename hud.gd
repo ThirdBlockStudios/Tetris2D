@@ -5,4 +5,4 @@ extends Container
 
 ## Initialize HUD.
 func Hud_init():
-    pass
+	pass
