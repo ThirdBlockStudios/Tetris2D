@@ -15,6 +15,7 @@ func _ready():
 
 
 func reset_board():
+    self.clear()
     board.clear()
     for x in range(dimensions.x):
         board.append(Array())
@@ -29,7 +30,6 @@ func Board_drawGhost(piece: Piece):
     var ghost_blocks = piece.blocks.map(func(block): return block + piece.position)
     var found_row = false
     while not found_row:      
-        print(ghost_blocks)
         for block in ghost_blocks:
             if block.y >= dimensions.y:
                 found_row = true                

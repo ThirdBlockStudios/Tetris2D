@@ -25,6 +25,7 @@ var tetrominoes = {
     GameData.TETROMINO.line: {}
 }
 
+
 ## Start game. Called when the node enters the scene tree for the first time.
 func _ready():
     print("cosine:", GameData.cosine)
@@ -53,6 +54,9 @@ func game_over():
 #    held_piece_board.clear()
 
 
+func hold_piece(piece: Piece):
+    # TODO
+    pass
 
 
 func spawn_piece():
