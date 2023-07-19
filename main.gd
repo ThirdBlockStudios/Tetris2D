@@ -62,8 +62,9 @@ func spawn_piece():
             next_queue.append(random_int)
     var current_piece = next_queue.pop_front()
     var data = tetrominoes[current_piece]
-    next_queue_board.initialize( next_queue) # TODO
+    next_queue_board.initialize(next_queue) # TODO
     piece.initialize(spawn_position, data)
+#    print(piece.blocks.map(func (b): b.position + Vector2(4, 0)))
     if board.Board_isMoveValid(piece, spawn_position):
         board.Board_setPiece(piece)
     else:

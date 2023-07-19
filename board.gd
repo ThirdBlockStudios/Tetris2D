@@ -22,18 +22,37 @@ func reset_board():
             board[x].append(0)
 
 
+func Board_drawGhost(piece: Piece):
+    # clear map
+    clear_layer(1)
+    # move ghost to bottom until not clear or past bottom
+    var ghost_blocks = piece.blocks.map(func(block): return block + piece.position)
+    var found_row = false
+    while not found_row:      
+        print(ghost_blocks)
+        for block in ghost_blocks:
+            if block.y >= dimensions.y:
+                found_row = true                
+            elif board[block.x][block.y]:
+                found_row = true
+        if not found_row:              
+            for i in ghost_blocks.size():
+                ghost_blocks[i] += Vector2.DOWN
+        else:
+            for i in ghost_blocks.size():
+                ghost_blocks[i] += Vector2.UP
+    
+    for block in ghost_blocks:        
+        set_cell(1, Vector2i(block.x, block.y), 7, Vector2i(0, 0), 0)
+    pass
+    
+
 func Board_setPiece(piece: Piece, locked = false):
     for block_position in piece.blocks:
         var draw_position = block_position + piece.position
         if locked:
-            printBoard()
             board[draw_position.x][draw_position.y] = true
         set_cell(0, Vector2i(draw_position), piece.tile_id, Vector2i(0, 0), 0)
-
-
-func printBoard():
-    for col in dimensions.x:
-        print(board[col])
 
 
 func Board_clearPiece(piece: Piece):
@@ -47,7 +66,7 @@ func Board_isMoveValid(piece: Piece, translation: Vector2):
         var new_cell_position = block_position + translation
         if new_cell_position.x < 0 or new_cell_position.x >= dimensions.x or new_cell_position.y >= dimensions.y:
             return false
-        if board[new_cell_position.x][new_cell_position.y]: # and tile_position.y >= 0 and tile_position.x >= 0:
+        if board[new_cell_position.x][new_cell_position.y] and new_cell_position.x >= 0 and new_cell_position.y >= 0:
             return false
     return true
 

@@ -54,6 +54,7 @@ func _process(delta):
         hard_drop()
 #    if Input.is_action_just_pressed("hold_piece"):
 #        hold_piece()
+    board.Board_drawGhost(self)
     board.Board_setPiece(self, false)
 
 
