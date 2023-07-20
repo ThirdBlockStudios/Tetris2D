@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dgo81uh8btghr"]
+[gd_scene load_steps=25 format=3 uid="uid://dgo81uh8btghr"]
 
 [ext_resource type="Texture2D" uid="uid://c3mf0kbb3bnh7" path="res://assets/Yellow.png" id="1_kq8sf"]
 [ext_resource type="Texture2D" uid="uid://dtffd0sdj1mbt" path="res://assets/Purple.png" id="2_kemyn"]
@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://c41d0cd2q4k6e" path="res://assets/A.mp3" id="11_22kkk"]
 [ext_resource type="AudioStream" uid="uid://csilkwm51puie" path="res://assets/G.mp3" id="12_5cllb"]
 [ext_resource type="AudioStream" uid="uid://xe4j45vimgit" path="res://assets/C.mp3" id="12_mif6o"]
+[ext_resource type="AudioStream" uid="uid://bovi8ceufikbt" path="res://assets/F.mp3" id="14_u6xl0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_stk8m"]
 texture = ExtResource("1_kq8sf")
@@ -214,4 +215,4 @@ stream = ExtResource("12_5cllb")
 stream = ExtResource("11_22kkk")
 
 [node name="ClearFourSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("11_22kkk")
+stream = ExtResource("14_u6xl0")
