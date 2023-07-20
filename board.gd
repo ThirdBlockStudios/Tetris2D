@@ -137,7 +137,11 @@ func Board_playTiles():
     match rows_cleared:
         4:
             $ClearFourSound.play()
-        1, 2, 3:
-            $ClearDefaultSound.play()
+        3:
+            $ClearThreeSound.play()
+        2:
+            $ClearTwoSound.play()
+        1:
+            $ClearOneSound.play()
             
             
