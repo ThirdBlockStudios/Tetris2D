@@ -126,9 +126,18 @@ func Board_updateRow(row: int, step: int):
 func Board_playTiles():
     var current_row = dimensions.y - 1  # start at bottom
     # Processing from the bottom to the top.
+    var rows_cleared = 0
     while current_row >= 0:
         if Board_isRowFull(current_row):
+            rows_cleared += 1
             Board_clearRow(current_row)
             Board_updateRow(current_row, 1)
         else:
             current_row -= 1
+    match rows_cleared:
+        4:
+            $ClearFourSound.play()
+        1, 2, 3:
+            $ClearDefaultSound.play()
+            
+            

@@ -41,17 +41,21 @@ func _process(delta):
     if input_delay > 0.15:
         if Input.is_action_pressed("ui_right"):
             input_delay = 0
-            move(Vector2.RIGHT)
+            if move(Vector2.RIGHT):
+                $TickSound.play()
         if Input.is_action_pressed("ui_left"):
             input_delay = 0
-            move(Vector2.LEFT)
+            if move(Vector2.LEFT):
+                $TickSound.play()
         if Input.is_action_pressed("ui_down"):
             input_delay = 0
-            move(Vector2.DOWN)
+            if move(Vector2.DOWN):
+                $TickSound.play()
     if Input.is_action_just_pressed("ui_up"):
         rotate_piece()
     if Input.is_action_just_pressed("hard_drop"):
         hard_drop()
+        $HardDropSound.play()
 #    if Input.is_action_just_pressed("hold_piece"):
 #        hold_piece()
     board.Board_drawGhost(self)
@@ -81,6 +85,7 @@ func rotate_piece():
     var old_blocks = blocks
     blocks = new_blocks
     if board.Board_isMoveValid(self, self.position):
+        $TickSound.play()
         return
     else:
         blocks = old_blocks
