@@ -2,7 +2,7 @@
 class_name MainBoard extends TileMap
 
 ## Game board dimensions.
-var dimensions = Vector2i(10, 20)
+var dimensions = Vector2i(20, 20)
 
 ## 2D representation of the board grid. Holds true for occupied locked tiles and 0/false for unnoccupied tiles.
 var board = []
@@ -37,8 +37,6 @@ func Board_drawGhost(piece: Piece):
             if block.y >= dimensions.y || board[block.x][block.y]:
                 found_row = true
         if not found_row:
-            for i in ghost_blocks.size():
-                ghost_blocks[i] += Vector2.DOWN
             for i in ghost_blocks.size():
                 ghost_blocks[i] += Vector2.DOWN
         else:

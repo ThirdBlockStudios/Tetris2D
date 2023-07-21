@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://c5471t4tipupa"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_ufnvx"]
-[ext_resource type="PackedScene" uid="uid://dgo81uh8btghr" path="res://board.tscn" id="2_smam3"]
+[ext_resource type="PackedScene" uid="uid://ba45bxkqll0vg" path="res://board.tscn" id="2_smam3"]
 [ext_resource type="PackedScene" uid="uid://mu87cwkf78ew" path="res://piece.tscn" id="3_7ih7w"]
-[ext_resource type="PackedScene" uid="uid://dsb2gb30c8b4r" path="res://next_queue.tscn" id="4_tt8a5"]
-[ext_resource type="AudioStream" uid="uid://c0ao2jttsinjj" path="res://assets/Loser.mp3" id="5_olbs2"]
+[ext_resource type="PackedScene" uid="uid://cr1upwhmx508i" path="res://next_queue.tscn" id="4_tt8a5"]
+[ext_resource type="AudioStream" path="res://assets/Loser.mp3" id="5_olbs2"]
 
 [node name="Main" type="Node" groups=["main"]]
 script = ExtResource("1_ufnvx")

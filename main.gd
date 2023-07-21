@@ -30,7 +30,7 @@ func _ready():
     board = get_tree().get_first_node_in_group("board")
     piece = get_tree().get_first_node_in_group("piece")
 
-    spawn_position = floori(board.dimensions.x / 2)
+    spawn_position = Vector2(floori(board.dimensions.x / 2), 0)
 
     randomize()  # randomize rng seed
 
