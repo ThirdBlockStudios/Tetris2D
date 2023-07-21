@@ -2,7 +2,7 @@
 class_name MainBoard extends TileMap
 
 ## Game board dimensions.
-var dimensions = Vector2i(20, 20)
+var dimensions = Vector2i(10, 20)
 
 ## 2D representation of the board grid. Holds true for occupied locked tiles and 0/false for unnoccupied tiles.
 var board = []
