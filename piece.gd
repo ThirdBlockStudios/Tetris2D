@@ -12,10 +12,10 @@ var tile_id: int
 var center_offset
 var blocks  #Array[Vector2] # hold grid position of child blocks
 
-var step_delay = 0.5
-var lock_delay = 0.5
-var lock_time = 0
-var input_delay = 0.1  # controls consecutive left/right/down movement lag on hold
+var step_delay = 0.5 ## Fall//tick speed in seconds.
+var lock_delay = 0.5 ## Grace time for lock in seconds.
+var lock_time = 0 ## Helper variable for lock_delay.
+@export_range(0, 10, 0.01, "suffix:s") var input_delay = 0.1  ## Hold input movement speed (left or right).
 
 
 func _ready():
@@ -101,8 +101,6 @@ func lock():
     board.Board_setPiece(self, true)
     board.Board_playTiles()
     main.spawn_piece()
-
-
 #    can_reserve = true
 
 

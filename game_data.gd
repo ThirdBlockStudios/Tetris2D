@@ -1,7 +1,7 @@
 class_name GameData
 extends Node
 
-enum TETROMINO { square, tee, l_left, l_right, zag_right, zag_left, line }
+enum TETROMINO { square, tee, l_left, l_right, zag_right, zag_left, line, ghost }
 
 const cosine = cos(PI / 2)  ## = 0
 const sine = sin(PI / 2)  ## = 1
@@ -14,7 +14,8 @@ const tile_ids = {
     TETROMINO.l_right: 3,
     TETROMINO.zag_right: 4,
     TETROMINO.zag_left: 5,
-    TETROMINO.line: 6
+    TETROMINO.line: 6,
+    TETROMINO.ghost: 7
 }
 
 const blocks = {
