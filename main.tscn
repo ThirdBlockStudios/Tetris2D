@@ -1,11 +1,31 @@
-[gd_scene load_steps=2 format=3 uid="uid://c5471t4tipupa"]
+[gd_scene load_steps=6 format=3 uid="uid://c5471t4tipupa"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_ufnvx"]
+[ext_resource type="PackedScene" uid="uid://dgo81uh8btghr" path="res://board.tscn" id="2_smam3"]
+[ext_resource type="PackedScene" uid="uid://mu87cwkf78ew" path="res://piece.tscn" id="3_7ih7w"]
+[ext_resource type="PackedScene" uid="uid://dsb2gb30c8b4r" path="res://next_queue.tscn" id="4_tt8a5"]
+[ext_resource type="AudioStream" uid="uid://c0ao2jttsinjj" path="res://assets/Loser.mp3" id="5_olbs2"]
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node" groups=["main"]]
 script = ExtResource("1_ufnvx")
 
 [node name="TickTimer" type="Timer" parent="."]
 wait_time = 0.25
+
+[node name="Piece" parent="." groups=["piece"] instance=ExtResource("3_7ih7w")]
+
+[node name="Board" parent="." groups=["board"] instance=ExtResource("2_smam3")]
+layer_1/name = ""
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = false
+layer_1/y_sort_origin = 0
+layer_1/z_index = -1
+layer_1/tile_data = PackedInt32Array()
+
+[node name="NextQueue" parent="." groups=["next_queue"] instance=ExtResource("4_tt8a5")]
+
+[node name="GameOverSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_olbs2")
 
 [connection signal="timeout" from="TickTimer" to="." method="_on_tick"]

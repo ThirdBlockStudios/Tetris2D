@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c6843yesee6ai"
+path="res://.godot/imported/A Tick.mp3-39e6d8effd58e02879e00a63a4ac0d2c.mp3str"
+
+[deps]
+
+source_file="res://assets/A Tick.mp3"
+dest_files=["res://.godot/imported/A Tick.mp3-39e6d8effd58e02879e00a63a4ac0d2c.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

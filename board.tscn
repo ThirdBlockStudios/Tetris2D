@@ -1,8 +1,7 @@
-[gd_scene load_steps=21 format=3 uid="uid://dgo81uh8btghr"]
+[gd_scene load_steps=25 format=3 uid="uid://dgo81uh8btghr"]
 
 [ext_resource type="Texture2D" uid="uid://c3mf0kbb3bnh7" path="res://assets/Yellow.png" id="1_kq8sf"]
 [ext_resource type="Texture2D" uid="uid://dtffd0sdj1mbt" path="res://assets/Purple.png" id="2_kemyn"]
-[ext_resource type="Script" path="res://tile_map.gd" id="2_knasf"]
 [ext_resource type="Texture2D" uid="uid://cvewiwcgasufw" path="res://assets/Orange.png" id="3_kejc5"]
 [ext_resource type="Texture2D" uid="uid://b76vdyoe8vtpk" path="res://assets/Blue.png" id="4_qo7gt"]
 [ext_resource type="Texture2D" uid="uid://dfdq47ja7odmq" path="res://assets/Green.png" id="5_hf0n1"]
@@ -10,10 +9,18 @@
 [ext_resource type="Texture2D" uid="uid://c03j7fe7qliyv" path="res://assets/Cyan.png" id="7_ofvc5"]
 [ext_resource type="Texture2D" uid="uid://ip1pp1wcaes" path="res://assets/Ghost.png" id="8_tr8si"]
 [ext_resource type="Texture2D" uid="uid://bbb04etr216g1" path="res://assets/Center.png" id="9_dg7oh"]
+[ext_resource type="Script" path="res://board.gd" id="10_bfnwc"]
+[ext_resource type="AudioStream" uid="uid://c41d0cd2q4k6e" path="res://assets/A.mp3" id="11_22kkk"]
+[ext_resource type="AudioStream" uid="uid://csilkwm51puie" path="res://assets/G.mp3" id="12_5cllb"]
+[ext_resource type="AudioStream" uid="uid://xe4j45vimgit" path="res://assets/C.mp3" id="12_mif6o"]
+[ext_resource type="AudioStream" uid="uid://bovi8ceufikbt" path="res://assets/F.mp3" id="14_u6xl0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_stk8m"]
 texture = ExtResource("1_kq8sf")
 texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w7dg2"]
 texture = ExtResource("2_kemyn")
@@ -189,13 +196,23 @@ sources/3 = SubResource("TileSetAtlasSource_e26bw")
 sources/7 = SubResource("TileSetAtlasSource_c45vx")
 sources/8 = SubResource("TileSetAtlasSource_8qw1r")
 
-[node name="TileMap" type="TileMap"]
+[node name="Board" type="TileMap"]
 tile_set = SubResource("TileSet_8s885")
 format = 2
-script = ExtResource("2_knasf")
+script = ExtResource("10_bfnwc")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
 autostart = true
 
-[connection signal="timeout" from="Timer" to="." method="play_tiles"]
+[node name="ClearOneSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_mif6o")
+
+[node name="ClearTwoSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_5cllb")
+
+[node name="ClearThreeSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_22kkk")
+
+[node name="ClearFourSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_u6xl0")

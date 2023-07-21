@@ -2,36 +2,78 @@
 class_name MainScript
 extends Node
 
-@onready var piece_scene = load("res://piece.tscn")
+#@onready var held_piece_board = get_tree().get_first_node_in_group('held_piece')
+@onready var next_queue_board = get_tree().get_first_node_in_group("next_queue")
 
-var initial_piece
+var board: MainBoard
+var piece: Piece
+var held_piece
 
-    
+var queue_size = 5
+var next_queue: Array[int] = []
 
-## Called when the node enters the scene tree for the first time.
+var spawn_position = Vector2(4, 0)
+
+var tetrominoes = {
+    GameData.TETROMINO.square: {},
+    GameData.TETROMINO.tee: {},
+    GameData.TETROMINO.l_left: {},
+    GameData.TETROMINO.l_right: {},
+    GameData.TETROMINO.zag_right: {},
+    GameData.TETROMINO.zag_left: {},
+    GameData.TETROMINO.line: {}
+}
+
+
+## Start game. Called when the node enters the scene tree for the first time.
 func _ready():
-    randomize()  ## randomize rng seed
-    initial_piece = piece_scene.instantiate()
-    initial_piece.setType(randi() % 7)  ## randomize piece type
-    initial_piece.position = Vector2(144, -16)  ## place block at "center" top
-    add_child(initial_piece)
-    pass  # Replace with function body.
+    board = get_tree().get_first_node_in_group("board")
+    piece = get_tree().get_first_node_in_group("piece")
+
+    spawn_position = floori(board.dimensions.x / 2)
+
+    randomize()  # randomize rng seed
+
+    # Set game constants (cell arrangements, tile type map)
+    for i in GameData.TETROMINO:
+        tetrominoes[GameData.TETROMINO[i]] = {
+            "type": GameData.TETROMINO[i],
+            "blocks": GameData.blocks[GameData.TETROMINO[i]],
+            "tile_id": GameData.tile_ids[GameData.TETROMINO[i]],
+            "center_offset": GameData.center_offset[GameData.TETROMINO[i]]
+        }
+    board.reset_board()
+    spawn_piece()
 
 
-## Called when an InputEventKey hasn't been consumed by _input or any GUI Control item (i.e., gameplay input).
-func _unhandled_key_input(event: InputEvent):
-    if event.is_action_pressed("spawn_piece_testing"):
-        spawn_new()
+func game_over():
+    $GameOverSound.play()
+    board.reset_board()
+    spawn_piece()
+
+
+#    held_piece = null
+#    held_piece_board.clear()
+
+
+func hold_piece(piece: Piece):
+    # TODO
     pass
 
-## Converts game coordinates to grid coordinates
-func convert(game_coordinates: Vector2):
-    return Vector2((-16 + game_coordinates.x) / 32, (-16 + game_coordinates.y) / 32)
 
-## Test function for spawning a new piece
-func spawn_new():
-    initial_piece.queue_free()
-    _ready()
+func spawn_piece():
+    if next_queue.size() < queue_size:
+        for i in range(queue_size - next_queue.size()):
+            var random_int = randi() % tetrominoes.size()
+            next_queue.append(random_int)
+    var current_piece = next_queue.pop_front()
+    var data = tetrominoes[current_piece]
+    next_queue_board.initialize(next_queue)  # TODO
+    piece.initialize(spawn_position, data)
+    if board.Board_isMoveValid(piece, spawn_position):
+        board.Board_setPiece(piece)
+    else:
+        game_over()
 
 
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
