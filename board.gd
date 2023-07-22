@@ -65,7 +65,6 @@ func Board_drawGhost(piece: Piece):
 func Board_setPiece(piece: Piece, locked = false):
     for block_position in piece.blocks:
         var draw_position = block_position + piece.position
-        var x = map_to_local(draw_position)
         if locked:
             board[draw_position.x][draw_position.y] = true
         set_cell(0, Vector2i(draw_position), piece.tile_id, Vector2i(0, 0), 0)
