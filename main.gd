@@ -15,13 +15,13 @@ var next_queue: Array[int] = []
 var spawn_position = Vector2(4, 0)
 
 var tetrominoes = {
-    GameData.TETROMINO.square: {},
-    GameData.TETROMINO.tee: {},
-    GameData.TETROMINO.l_left: {},
-    GameData.TETROMINO.l_right: {},
-    GameData.TETROMINO.zag_right: {},
-    GameData.TETROMINO.zag_left: {},
-    GameData.TETROMINO.line: {}
+    GameData.Tetromino.SQUARE: {},
+    GameData.Tetromino.TEE: {},
+    GameData.Tetromino.L_LEFT: {},
+    GameData.Tetromino.L_RIGHT: {},
+    GameData.Tetromino.ZAG_RIGHT: {},
+    GameData.Tetromino.ZAG_LEFT: {},
+    GameData.Tetromino.LINE: {}
 }
 
 
@@ -35,12 +35,12 @@ func _ready():
     randomize()  # randomize rng seed
 
     # Set game constants (cell arrangements, tile type map)
-    for i in GameData.TETROMINO:
-        tetrominoes[GameData.TETROMINO[i]] = {
-            "type": GameData.TETROMINO[i],
-            "blocks": GameData.blocks[GameData.TETROMINO[i]],
-            "tile_id": GameData.tile_ids[GameData.TETROMINO[i]],
-            "center_offset": GameData.center_offset[GameData.TETROMINO[i]]
+    for i in GameData.Tetromino:
+        tetrominoes[GameData.Tetromino[i]] = {
+            "type": GameData.Tetromino[i],
+            "blocks": GameData.BLOCKS[GameData.Tetromino[i]],
+            "tile_id": GameData.TILE_ID[GameData.Tetromino[i]],
+            "center_offset": GameData.CENTER_OFFSET[GameData.Tetromino[i]]
         }
     board.reset_board()
     spawn_piece()
