@@ -5,12 +5,11 @@ extends Node2D
 
 var test = false
 
-
-func _process(delta):
-	# Change the animation with keeping the frame index and progress.
-#	if Input.is_action_pressed("hard_drop"):
-	if test:
-		animated_sprite.play()
+#func _process(delta):
+#	# Change the animation with keeping the frame index and progress.
+##	if Input.is_action_pressed("hard_drop"):
+#	if test:
+#		animated_sprite.play()
 
 
 func _ready():
@@ -22,14 +21,16 @@ func _ready():
 
 func Explosion_stop():
 	animated_sprite.stop()
-	test = false
 
 
-func Explosion_updateCoords(coords: Vector2i):
+#	test = false
+
+
+func Explosion_updateCoords(coords: Vector2i, order):
 	self.position.x = coords.x
-	self.position.y = coords.y - 60
+	self.position.y = coords.y - 60 - (order * 20)
 
 
 func Explosion_start():
-	test = true
-#	animated_sprite.play()
+#	test = true
+	animated_sprite.play()

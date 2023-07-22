@@ -100,12 +100,12 @@ func Board_isRowFull(row: int) -> bool:
 
 
 ## Function to clear a row by setting its cells to false (empty).
-func Board_clearRow(row: int):
+func Board_clearRow(row: int, order: int):
 	for cols in dimensions.x:
 		board[cols][row] = false
 		explosion_node = explosion_scene.instantiate()
 		add_child(explosion_node)
-		explosion_node.Explosion_updateCoords(map_to_local(Vector2i(cols, row)))
+		explosion_node.Explosion_updateCoords(map_to_local(Vector2i(cols, row)), order)
 		explosion_node.Explosion_start()
 #		explosion_node.Explosion_stop()
 #		explosion_node.queue_free()
@@ -142,10 +142,12 @@ func Board_updateRow(row: int, step: int):
 func Board_playTiles():
 	var current_row = dimensions.y - 1  # Start from the bottom row.
 	var rows_cleared = 0
+	var test = 0
 	while current_row >= 0:
 		if Board_isRowFull(current_row):
 			rows_cleared += 1
-			Board_clearRow(current_row)
+			Board_clearRow(current_row, test)
+			test += 1
 			Board_updateRow(current_row, 1)  # Move the rows above down by 1 step.
 		else:
 			current_row -= 1  # Move to the row above.

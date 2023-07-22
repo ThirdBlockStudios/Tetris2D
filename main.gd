@@ -64,7 +64,8 @@ func hold_piece(piece: Piece):
 func spawn_piece():
 	if next_queue.size() < queue_size:
 		for i in range(queue_size - next_queue.size()):
-			var random_int = randi() % tetrominoes.size()
+#			var random_int = randi() % tetrominoes.size()
+			var random_int = 6
 			next_queue.append(random_int)
 	var current_piece = next_queue.pop_front()
 	var data = tetrominoes[current_piece]
