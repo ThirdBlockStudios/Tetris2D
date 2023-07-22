@@ -1,36 +1,22 @@
 class_name Explosion
 extends Node2D
 
+# Local variables.
 @onready var animated_sprite = $AnimatedSprite2D
 
-var test = false
 
-#func _process(delta):
-#	# Change the animation with keeping the frame index and progress.
-##	if Input.is_action_pressed("hard_drop"):
-#	if test:
-#		animated_sprite.play()
-
-
-func _ready():
-	print("ready")
-
-
-#	animated_sprite.play()
-
-
+## Signal emitted by AnimationSprite2D.animation_finished(). Without this, the
+## animation will loop.
 func Explosion_stop():
 	animated_sprite.stop()
 
 
-#	test = false
+## Moves the current animation position to coordinates (px).
+func Explosion_updateCoordinates(coordinates: Vector2i):
+	self.position.x = coordinates.x
+	self.position.y = coordinates.y
 
 
-func Explosion_updateCoords(coords: Vector2i, order):
-	self.position.x = coords.x - 16.25
-	self.position.y = coords.y - (order * 32) - 16.25
-
-
+## Starts the animation.
 func Explosion_start():
-#	test = true
 	animated_sprite.play()

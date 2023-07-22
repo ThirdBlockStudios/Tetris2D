@@ -1,12 +1,18 @@
 # Class for main play area.
 class_name MainBoard extends TileMap
 
+# Constants
+
+## Tile length in pixels.
+const TILE_PIXEL_LENGTH = 32
+
 ## Game board dimensions.
-var dimensions = Vector2i(10, 20)
+const dimensions = Vector2i(10, 20)
 
 ## 2D representation of the board grid. Holds true for occupied locked tiles and 0/false for unnoccupied tiles.
 var board = []
 
+## Scenes and nodes.
 var explosion_scene = load("res://explosion.tscn")
 var explosion_node
 
@@ -100,15 +106,23 @@ func Board_isRowFull(row: int) -> bool:
 
 
 ## Function to clear a row by setting its cells to false (empty).
-func Board_clearRow(row: int, order: int):
+## order is an optional parameter to handle multi-row clear animations.
+func Board_clearRow(row: int, order: int = 0):
 	for cols in dimensions.x:
-		board[cols][row] = false
+		# First handle the clearing animations.
 		explosion_node = explosion_scene.instantiate()
 		add_child(explosion_node)
-		explosion_node.Explosion_updateCoords(map_to_local(Vector2i(cols, row)), order)
+		# We need to account for centering offsets using TILE_PIXEL_LENGTH.
+		var local_coordinates = map_to_local(Vector2i(cols, row))
+		local_coordinates.x = local_coordinates.x - (TILE_PIXEL_LENGTH / 2)
+		local_coordinates.y = (
+			local_coordinates.y - (order * TILE_PIXEL_LENGTH) - (TILE_PIXEL_LENGTH / 2)
+		)
+		explosion_node.Explosion_updateCoordinates(local_coordinates)
 		explosion_node.Explosion_start()
-#		explosion_node.Explosion_stop()
-#		explosion_node.queue_free()
+
+		# Then update board state and Tilemap rendering.
+		board[cols][row] = false
 		erase_cell(0, Vector2i(cols, row))
 
 
@@ -142,12 +156,10 @@ func Board_updateRow(row: int, step: int):
 func Board_playTiles():
 	var current_row = dimensions.y - 1  # Start from the bottom row.
 	var rows_cleared = 0
-	var test = 0
 	while current_row >= 0:
 		if Board_isRowFull(current_row):
+			Board_clearRow(current_row, rows_cleared)
 			rows_cleared += 1
-			Board_clearRow(current_row, test)
-			test += 1
 			Board_updateRow(current_row, 1)  # Move the rows above down by 1 step.
 		else:
 			current_row -= 1  # Move to the row above.
