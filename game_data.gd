@@ -1,15 +1,15 @@
 class_name GameData
 extends Node
 
-enum Tetromino { 
-	SQUARE,
-	TEE,
-	L_LEFT,
-	L_RIGHT,
-	ZAG_RIGHT,
-	ZAG_LEFT,
-	LINE, 
-	DOUBLE_SQUARE,
+enum Tetromino {
+    SQUARE,
+    TEE,
+    L_LEFT,
+    L_RIGHT,
+    ZAG_RIGHT,
+    ZAG_LEFT,
+    LINE,
+    DOUBLE_SQUARE,
 }
 
 const COSINE = cos(PI / 2)  ## = 0
@@ -23,7 +23,7 @@ const TILE_ID = {
     Tetromino.L_RIGHT: 3,
     Tetromino.ZAG_RIGHT: 4,
     Tetromino.ZAG_LEFT: 5,
-    Tetromino.LINE: 6, 
+    Tetromino.LINE: 6,
     Tetromino.DOUBLE_SQUARE: 0
 }
 
@@ -35,7 +35,17 @@ const BLOCKS = {
     Tetromino.ZAG_RIGHT: [Vector2(-1, 0), Vector2(0, 0), Vector2(0, -1), Vector2(1, -1)],
     Tetromino.ZAG_LEFT: [Vector2(-1, -1), Vector2(0, -1), Vector2(0, 0), Vector2(1, 0)],
     Tetromino.LINE: [Vector2(-1, 0), Vector2(0, 0), Vector2(1, 0), Vector2(2, 0)],
-    Tetromino.DOUBLE_SQUARE: [Vector2(-1, 0), Vector2(0, 0), Vector2(1, 0), Vector2(2, 0), Vector2(-1, 1), Vector2(0, 1), Vector2(1, 1), Vector2(2, 1)]
+    Tetromino.DOUBLE_SQUARE:
+    [
+        Vector2(-1, 0),
+        Vector2(0, 0),
+        Vector2(1, 0),
+        Vector2(2, 0),
+        Vector2(-1, 1),
+        Vector2(0, 1),
+        Vector2(1, 1),
+        Vector2(2, 1)
+    ]
 }
 
 const CENTER_OFFSET = {
