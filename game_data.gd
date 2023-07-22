@@ -24,7 +24,7 @@ const TILE_ID = {
     Tetromino.ZAG_RIGHT: 4,
     Tetromino.ZAG_LEFT: 5,
     Tetromino.LINE: 6,
-    Tetromino.DOUBLE_SQUARE: 0
+    Tetromino.DOUBLE_SQUARE: 0,
 }
 
 const BLOCKS = {
@@ -45,7 +45,7 @@ const BLOCKS = {
         Vector2(0, 1),
         Vector2(1, 1),
         Vector2(2, 1)
-    ]
+    ],
 }
 
 const CENTER_OFFSET = {
@@ -56,5 +56,5 @@ const CENTER_OFFSET = {
     Tetromino.ZAG_RIGHT: Vector2(0, 0),
     Tetromino.ZAG_LEFT: Vector2(0, 0),
     Tetromino.LINE: Vector2(-0.5, -0.5),
-    Tetromino.DOUBLE_SQUARE: Vector2(-0.5, -0.5)
+    Tetromino.DOUBLE_SQUARE: Vector2(-0.5, -0.5),
 }
