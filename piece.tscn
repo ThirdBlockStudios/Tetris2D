@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://piece.gd" id="1_y0d18"]
 [ext_resource type="PackedScene" uid="uid://dljx1w18vl31a" path="res://block.tscn" id="2_3gbvr"]
-[ext_resource type="AudioStream" path="res://assets/C Hard.mp3" id="3_togce"]
-[ext_resource type="AudioStream" path="res://assets/A Tick.mp3" id="4_pai0x"]
+[ext_resource type="AudioStream" uid="uid://dykuvaikv3xkr" path="res://assets/C Hard.mp3" id="3_togce"]
+[ext_resource type="AudioStream" uid="uid://c6843yesee6ai" path="res://assets/A Tick.mp3" id="4_pai0x"]
 
 [node name="Piece" type="Node2D"]
 script = ExtResource("1_y0d18")
