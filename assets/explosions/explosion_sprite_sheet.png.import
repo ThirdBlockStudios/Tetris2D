@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddlodfpymmop4"
-path="res://.godot/imported/tile010.png-d38eb31eb909dd931d0230d8a0cd0e7e.ctex"
+uid="uid://6ossq2r7i07s"
+path="res://.godot/imported/explosion_sprite_sheet.png-575aa50557c026006089bc0054378c52.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/explosions/tile010.png"
-dest_files=["res://.godot/imported/tile010.png-d38eb31eb909dd931d0230d8a0cd0e7e.ctex"]
+source_file="res://assets/explosions/explosion_sprite_sheet.png"
+dest_files=["res://.godot/imported/explosion_sprite_sheet.png-575aa50557c026006089bc0054378c52.ctex"]
 
 [params]
 
