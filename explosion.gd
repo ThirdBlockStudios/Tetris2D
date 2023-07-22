@@ -27,8 +27,8 @@ func Explosion_stop():
 
 
 func Explosion_updateCoords(coords: Vector2i, order):
-	self.position.x = coords.x
-	self.position.y = coords.y - 60 - (order * 20)
+	self.position.x = coords.x - 16.25
+	self.position.y = coords.y - (order * 32) - 16.25
 
 
 func Explosion_start():
