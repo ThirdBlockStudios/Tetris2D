@@ -1,6 +1,6 @@
 [gd_scene load_steps=24 format=3 uid="uid://dp15bgrby0ddh"]
 
-[ext_resource type="Texture2D" path="res://assets/explosions/pngegg.png" id="1_34qi7"]
+[ext_resource type="Texture2D" uid="uid://6ossq2r7i07s" path="res://assets/explosions/explosion_sprite_sheet.png" id="1_34qi7"]
 [ext_resource type="Script" path="res://explosion.gd" id="1_x7j3n"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cr8pu"]
