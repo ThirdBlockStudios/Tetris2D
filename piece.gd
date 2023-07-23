@@ -5,6 +5,7 @@ extends Node2D
 
 var main: MainScript
 var board: MainBoard
+var pieceHolder: PieceHolder
 
 ## Represents piece type.
 var data
@@ -12,18 +13,24 @@ var tile_id: int
 var center_offset
 var blocks  #Array[Vector2] # hold grid position of child blocks
 
-var step_delay = 0.5 ## Fall//tick speed in seconds.
-var lock_delay = 0.5 ## Grace time for lock in seconds.
-var lock_time = 0 ## Helper variable for lock_delay.
+# TODO(nkuang): const
+var step_delay = 0.5  ## Fall//tick speed in seconds.
+var lock_delay = 0.5  ## Grace time for lock in seconds.
+var lock_time = 0  ## Helper variable for lock_delay.
+
+# Determines if the current piece is holdable.
+var isHoldable = true
+
 @export_range(0, 10, 0.01, "suffix:s") var input_delay = 0.1  ## Hold input movement speed (left or right).
 
 
 func _ready():
     main = get_tree().get_first_node_in_group("main")
     board = get_tree().get_first_node_in_group("board")
+    pieceHolder = preload("res://piece_holder.gd").new()
 
 
-func initialize(spawn_position: Vector2, piece_data):
+func initialize(spawn_position: Vector2, piece_data: Dictionary):
     position = spawn_position
     data = piece_data
     tile_id = piece_data.tile_id
@@ -56,8 +63,10 @@ func _process(delta):
     if Input.is_action_just_pressed("hard_drop"):
         hard_drop()
         $HardDropSound.play()
-#    if Input.is_action_just_pressed("hold_piece"):
-#        hold_piece()
+    if Input.is_action_just_pressed("hold_piece"):
+        if isHoldable:
+            hold_piece()
+            return
     board.Board_drawGhost(self)
     board.Board_setPiece(self, false)
 
@@ -77,9 +86,9 @@ func move(translation: Vector2) -> bool:
 func rotate_piece():
     var new_blocks = []
     var x: int
-    var y: int    
+    var y: int
     for current_block in blocks:
-        x = ceili(-1 *(current_block.y + center_offset.y))
+        x = ceili(-1 * (current_block.y + center_offset.y))
         y = ceili(current_block.x + center_offset.x)
         new_blocks.push_back(Vector2(roundi(x), roundi(y)))
     var old_blocks = blocks
@@ -89,7 +98,7 @@ func rotate_piece():
         return
     else:
         blocks = old_blocks
-        
+
 
 func hard_drop():
     while move(Vector2.DOWN):
@@ -97,11 +106,27 @@ func hard_drop():
     lock()
 
 
+func hold_piece():
+    board.Board_clearPiece(self)
+    # Retrieve a held piece if it exists.
+    var held_piece = pieceHolder.PieceHolder_getPiece()
+    if held_piece >= 0:
+        # Need to add it to the next queue.
+        main.hold_piece(held_piece)
+    # Hold the piece.
+    pieceHolder.PieceHolder_holdPiece(self.tile_id)
+    main.spawn_piece()
+    # Holding is disabled for the next piece.
+    isHoldable = false
+
+
 func lock():
     board.Board_setPiece(self, true)
     board.Board_playTiles()
     main.spawn_piece()
 #    can_reserve = true
+    # Once a piece is locked, piece storage cooldown refreshes.
+    isHoldable = true
 
 
 ## Controls piece falling.

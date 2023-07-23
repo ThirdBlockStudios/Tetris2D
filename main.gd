@@ -56,9 +56,9 @@ func game_over():
 #    held_piece_board.clear()
 
 
-func hold_piece(piece: Piece):
-    # TODO
-    pass
+## Adds a piece to the front of the next queue.
+func hold_piece(input_piece: int):
+    next_queue.push_front(input_piece)
 
 
 func spawn_piece():
