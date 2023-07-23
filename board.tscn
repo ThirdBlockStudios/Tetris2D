@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://ba45bxkqll0vg"]
+[gd_scene load_steps=23 format=3 uid="uid://ba45bxkqll0vg"]
 
 [ext_resource type="Texture2D" uid="uid://c3mf0kbb3bnh7" path="res://assets/Yellow.png" id="1_kq8sf"]
 [ext_resource type="Texture2D" uid="uid://dtffd0sdj1mbt" path="res://assets/Purple.png" id="2_kemyn"]
@@ -54,7 +54,6 @@ texture_region_size = Vector2i(32, 32)
 texture = ExtResource("8_tr8si")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mho3a"]
 texture = ExtResource("9_kanhe")
 texture_region_size = Vector2i(32, 32)
