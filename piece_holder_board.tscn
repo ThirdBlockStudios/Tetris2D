@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cm0viiv7poh33"]
+
+[ext_resource type="PackedScene" uid="uid://ba45bxkqll0vg" path="res://board.tscn" id="1_4kh51"]
+
+[node name="Board" instance=ExtResource("1_4kh51")]
+position = Vector2(354, 64)
+layer_0/tile_data = PackedInt32Array(0, 0, 0)

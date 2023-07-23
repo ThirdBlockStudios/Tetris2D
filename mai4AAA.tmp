@@ -17,47 +17,41 @@
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e7hj4"]
 texture = ExtResource("6_55ju1")
 texture_region_size = Vector2i(32, 32)
-0:0/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8khv2"]
-texture = ExtResource("10_om0ig")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4da1b"]
+texture = ExtResource("7_310tn")
 texture_region_size = Vector2i(32, 32)
-0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cid3p"]
+texture = ExtResource("8_d7cd4")
+texture_region_size = Vector2i(32, 32)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p5qai"]
 texture = ExtResource("9_y1n2c")
 texture_region_size = Vector2i(32, 32)
-0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8khv2"]
+texture = ExtResource("10_om0ig")
+texture_region_size = Vector2i(32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g1v1m"]
+texture = ExtResource("11_f8ll4")
+texture_region_size = Vector2i(32, 32)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x4540"]
 texture = ExtResource("12_yha48")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cid3p"]
-texture = ExtResource("8_d7cd4")
-texture_region_size = Vector2i(32, 32)
-0:0/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g1v1m"]
-texture = ExtResource("11_f8ll4")
-texture_region_size = Vector2i(32, 32)
-0:0/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4da1b"]
-texture = ExtResource("7_310tn")
-texture_region_size = Vector2i(32, 32)
-0:0/0 = 0
-
 [sub_resource type="TileSet" id="TileSet_t1ig7"]
 tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_e7hj4")
-sources/1 = SubResource("TileSetAtlasSource_8khv2")
-sources/2 = SubResource("TileSetAtlasSource_p5qai")
-sources/3 = SubResource("TileSetAtlasSource_x4540")
-sources/4 = SubResource("TileSetAtlasSource_cid3p")
+sources/1 = SubResource("TileSetAtlasSource_4da1b")
+sources/2 = SubResource("TileSetAtlasSource_cid3p")
+sources/3 = SubResource("TileSetAtlasSource_p5qai")
+sources/4 = SubResource("TileSetAtlasSource_8khv2")
 sources/5 = SubResource("TileSetAtlasSource_g1v1m")
-sources/6 = SubResource("TileSetAtlasSource_4da1b")
+sources/6 = SubResource("TileSetAtlasSource_x4540")
 
 [node name="Main" type="Node" groups=["main"]]
 script = ExtResource("1_ufnvx")
@@ -84,14 +78,11 @@ stream = ExtResource("5_olbs2")
 
 [node name="PieceHolderBoard" type="TileMap" parent="." groups=["piece_holder_board"]]
 z_as_relative = false
-position = Vector2(384, 128)
+position = Vector2(352, 64)
 tile_set = SubResource("TileSet_t1ig7")
 format = 2
-layer_0/z_index = 1
+layer_0/z_index = 3
+layer_0/tile_data = PackedInt32Array(0, 6, 0, 65525, 6, 0, 65526, 6, 0, 65527, 6, 0, 65528, 6, 0, 65529, 6, 0, 65530, 6, 0, 65531, 6, 0, 65532, 6, 0, 65533, 6, 0, 65534, 6, 0, 65535, 6, 0, 1, 6, 0, 2, 6, 0, 3, 6, 0, 4, 6, 0, 5, 6, 0, 6, 6, 0, 7, 6, 0, 8, 6, 0)
 script = ExtResource("4_8mpw3")
-
-[node name="RightBoundary" type="Line2D" parent="."]
-points = PackedVector2Array(320, 640, 320, 0)
-width = 1.0
 
 [connection signal="timeout" from="TickTimer" to="." method="_on_tick"]

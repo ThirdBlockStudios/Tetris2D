@@ -6,6 +6,7 @@ extends Node2D
 var main: MainScript
 var board: MainBoard
 var pieceHolder: PieceHolder
+var pieceHolderBoard: PieceHolderBoard
 
 ## Represents piece type.
 var data
@@ -27,6 +28,7 @@ var isHoldable = true
 func _ready():
     main = get_tree().get_first_node_in_group("main")
     board = get_tree().get_first_node_in_group("board")
+    pieceHolderBoard = get_tree().get_first_node_in_group("piece_holder_board")
     pieceHolder = preload("res://piece_holder.gd").new()
 
 
@@ -110,11 +112,13 @@ func hold_piece():
     board.Board_clearPiece(self)
     # Retrieve a held piece if it exists.
     var held_piece = pieceHolder.PieceHolder_getPiece()
-    if held_piece >= 0:
+    if held_piece is GameData.TETROMINO:
         # Need to add it to the next queue.
         main.hold_piece(held_piece)
     # Hold the piece.
+    # TODO(nkuang): consolidate pieceHolder and pieceHolderBoard.
     pieceHolder.PieceHolder_holdPiece(self.tile_id)
+    pieceHolderBoard.PieceHolderBoard_render(self.tile_id)
     main.spawn_piece()
     # Holding is disabled for the next piece.
     isHoldable = false
