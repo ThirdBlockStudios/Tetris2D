@@ -23,8 +23,11 @@ var lock_time = 0  ## Helper variable for lock_delay.
 ## Determines if the current piece is holdable.
 var isHoldable = true
 
-@export_range(0, 10, 0.01, "suffix:s") var input_delay = 0.1  ## Hold input movement speed (left or right).
+@export_range(0, 10, 0.01, "suffix:s") var standard_movement_speed = 0.2  ## Input movement speed (left or right) in tick seconds between moves.
+@export_range(0, 10, 0.01, "suffix:s") var hold_movement_speed = 0.05  ## Hold input movement speed (left or right) after lag delay in tick seconds between moves.
+@export_range(0, 10, 0.01, "suffix:s") var lag_delay = 0.25  ## Delay before left right speed accelerates.
 var current_input_delay = 0
+var current_key_held_time = 0 ## Tracks current held time
 
 
 func _ready():
@@ -49,8 +52,9 @@ func initialize(spawn_position: Vector2, piece_data: Dictionary):
 func _process(delta):
     lock_time += delta
     current_input_delay += delta
+    current_key_held_time += delta
     board.Board_clearPiece(self)
-    if current_input_delay > input_delay:
+    if current_input_delay > standard_movement_speed || (current_key_held_time > lag_delay && current_input_delay > hold_movement_speed):
         if Input.is_action_pressed("ui_right"):
             current_input_delay = 0
             if move(Vector2.RIGHT):
@@ -63,6 +67,8 @@ func _process(delta):
             current_input_delay = 0
             if move(Vector2.DOWN):
                 $TickSound.play()
+    if Input.is_action_just_released("ui_left") || Input.is_action_just_released("ui_right"):
+        current_key_held_time = 0
     if Input.is_action_just_pressed("ui_up"):
         rotate_piece()
     if Input.is_action_just_pressed("hard_drop"):
@@ -72,6 +78,7 @@ func _process(delta):
         if isHoldable:
             hold_piece()
             return
+        
     board.Board_drawGhost(self)
     board.Board_setPiece(self, false)
 
