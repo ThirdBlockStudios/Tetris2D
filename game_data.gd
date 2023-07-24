@@ -9,44 +9,42 @@ const rotation_matrix = [cosine, sine, -sine, cosine] ## Rotation constants for 
 
 ## To add new tetrominos add your tetromino name here then add an 
 ## entry to tetrominos below (see @/models/tetromino.gd for required parameters).
-enum { square, tee, l_left, l_right, zag_right, zag_left, line }
+enum types { square, tee, l_left, l_right, zag_right, zag_left, line, ghost, background }
 
 
-const ghost_layer = 2
-const ghost_block_tile_id = 7
-const background_layer = 1
-const background_tile_id = 8
+## Board tile map layers.
+enum layers { game, background, ghost }
 
 
 ## Tetrominos available to spawn in game.
 var tetrominoes = {
-    square: Tetromino.new(
-        square, # Tile ID
+    types.square: Tetromino.new(
+        types.square, # Tile ID
         [Vector2(0, 0), Vector2(0, 1), Vector2(1, 0), Vector2(1, 1)], # Block grid coordinates
         Vector2(-0.5, -0.5) # Rotation center offset
     ),
-    tee: Tetromino.new(
-        tee,
+    types.tee: Tetromino.new(
+        types.tee,
         [Vector2(-1, 0), Vector2(0, 0), Vector2(0, -1), Vector2(1, 0)]
     ),
-    l_right: Tetromino.new(
-        l_right,
+    types.l_right: Tetromino.new(
+        types.l_right,
         [Vector2(-1, -1), Vector2(-1, 0), Vector2(0, 0), Vector2(1, 0)]
     ),
-    l_left: Tetromino.new(
-        l_left,
+    types.l_left: Tetromino.new(
+        types.l_left,
         [Vector2(-1, 0), Vector2(0, 0), Vector2(1, 0), Vector2(1, -1)]
     ),
-    zag_right: Tetromino.new(
-        zag_right,
+    types.zag_right: Tetromino.new(
+        types.zag_right,
         [Vector2(-1, 0), Vector2(0, 0), Vector2(0, -1), Vector2(1, -1)]
     ),
-    zag_left: Tetromino.new(
-        zag_left,
+    types.zag_left: Tetromino.new(
+        types.zag_left,
         [Vector2(-1, -1), Vector2(0, -1), Vector2(0, 0), Vector2(1, 0)]
     ),
-    line: Tetromino.new(
-        line,
+    types.line: Tetromino.new(
+        types.line,
         [Vector2(-1, 0), Vector2(0, 0), Vector2(1, 0), Vector2(2, 0)],
         Vector2(-0.5, -0.5)
     )
