@@ -19,28 +19,27 @@ var tetrominoes
 
 
 func _init():
-    game_data = GameData.new()
-    tetrominoes = game_data.tetrominoes
-    
-    
+	game_data = GameData.new()
+	tetrominoes = game_data.tetrominoes
+
+
 ## Start game. Called when the node enters the scene tree for the first time.
 func _ready():
-    board = get_tree().get_first_node_in_group("board")
-    piece = get_tree().get_first_node_in_group("piece")
+	board = get_tree().get_first_node_in_group("board")
+	piece = get_tree().get_first_node_in_group("piece")
 
-    spawn_position = Vector2(floori(board.dimensions.x / 2), 0)
+	spawn_position = Vector2(floori(board.dimensions.x / 2), 0)
 
-    randomize()  # randomize rng seed
+	randomize()  # randomize rng seed
 
-    
-    board.reset_board()
-    spawn_piece()
+	board.reset_board()
+	spawn_piece()
 
 
 func game_over():
-    $GameOverSound.play()
-    board.reset_board()
-    spawn_piece()
+	$GameOverSound.play()
+	board.reset_board()
+	spawn_piece()
 
 
 #    held_piece = null
@@ -48,27 +47,27 @@ func game_over():
 
 
 func hold_piece(piece: Piece):
-    # TODO
-    pass
+	# TODO
+	pass
 
 
 func spawn_piece():
-    if next_queue.size() < queue_size:
-        for i in range(queue_size - next_queue.size()):
-            var random_int = randi() % tetrominoes.size()
-            next_queue.append(random_int)
-    var current_piece = next_queue.pop_front()
-    var data = tetrominoes[current_piece]
-    next_queue_board.initialize(next_queue)  # TODO
-    piece.initialize(spawn_position, data)
-    if board.Board_isMoveValid(piece, spawn_position):
-        board.Board_setPiece(piece)
-    else:
-        game_over()
+	if next_queue.size() < queue_size:
+		for i in range(queue_size - next_queue.size()):
+			var random_int = randi() % tetrominoes.size()
+			next_queue.append(random_int)
+	var current_piece = next_queue.pop_front()
+	var data = tetrominoes[current_piece]
+	next_queue_board.initialize(next_queue)  # TODO
+	piece.initialize(spawn_position, data)
+	if board.Board_isMoveValid(piece, spawn_position):
+		board.Board_setPiece(piece)
+	else:
+		game_over()
 
 
 ## This is the game's main loop called every game tick. It is primarily responsible for updating the active piece's position (falling).
 ## The tick rate or speed of the game is determined by the current wait time of TickTimer.
 func _on_tick():
-    # TODO: speed up game -> decrease TickTimer wait time by percentage based on either points or
-    pass  # Replace with function body.
+	# TODO: speed up game -> decrease TickTimer wait time by percentage based on either points or
+	pass  # Replace with function body.
