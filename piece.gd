@@ -27,8 +27,8 @@ func initialize(spawn_position: Vector2, piece_data):
     position = spawn_position
     data = piece_data
     tile_id = piece_data.tile_id
-    blocks = piece_data.blocks
-    center_offset = piece_data.center_offset
+    blocks = piece_data.block_grid_coordinates
+    center_offset = piece_data.rotation_center_offset
 #    current_rotation_index = 3
     $Ticker.start(step_delay)
     lock_time = 0.0
