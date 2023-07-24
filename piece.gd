@@ -56,7 +56,7 @@ func _process(delta):
     board.Board_clearPiece(self)
     if (
         current_input_delay > standard_movement_speed
-        || (current_key_held_time > lag_delay && current_input_delay > hold_movement_speed)
+        || (current_key_held_time > lag_delay && current_input_delay > hold_movement_speed) # Piece acceleration applies after a delay (current_key_held_time). This is reset below on key release.
     ):
         if Input.is_action_pressed("ui_right"):
             current_input_delay = 0
@@ -70,7 +70,7 @@ func _process(delta):
             current_input_delay = 0
             if move(Vector2.DOWN):
                 $TickSound.play()
-    if Input.is_action_just_released("ui_left") || Input.is_action_just_released("ui_right"):
+    if Input.is_action_just_released("ui_left") || Input.is_action_just_released("ui_right"): # Resets key held time to delay acceleration on next input.
         current_key_held_time = 0
     if Input.is_action_just_pressed("ui_up"):
         rotate_piece()
