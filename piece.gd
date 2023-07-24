@@ -5,27 +5,39 @@ extends Node2D
 
 var main: MainScript
 var board: MainBoard
+var pieceHolder: PieceHolder
+var pieceHolderBoard: PieceHolderBoard
 
 ## Represents piece type.
 var data
+var type
 var tile_id: int
 var center_offset
 var blocks  #Array[Vector2] # hold grid position of child blocks
 
+# TODO(nkuang): const
 var step_delay = 0.5  ## Fall//tick speed in seconds.
-var lock_delay = 0.5  ## Grace time for lock in seconds.
+const lock_delay = 0.5  ## Grace time for lock in seconds.
 var lock_time = 0  ## Helper variable for lock_delay.
+
+## Determines if the current piece is holdable.
+var isHoldable = true
+
 @export_range(0, 10, 0.01, "suffix:s") var input_delay = 0.1  ## Hold input movement speed (left or right).
+var current_input_delay = 0
 
 
 func _ready():
     main = get_tree().get_first_node_in_group("main")
     board = get_tree().get_first_node_in_group("board")
+    pieceHolderBoard = get_tree().get_first_node_in_group("piece_holder_board")
+    pieceHolder = preload("res://piece_holder.gd").new()
 
 
-func initialize(spawn_position: Vector2, piece_data):
+func initialize(spawn_position: Vector2, piece_data: Dictionary):
     position = spawn_position
     data = piece_data
+    type = piece_data.type
     tile_id = piece_data.tile_id
     blocks = piece_data.block_grid_coordinates
     center_offset = piece_data.rotation_center_offset
@@ -36,19 +48,19 @@ func initialize(spawn_position: Vector2, piece_data):
 
 func _process(delta):
     lock_time += delta
-    input_delay += delta
+    current_input_delay += delta
     board.Board_clearPiece(self)
-    if input_delay > 0.15:
+    if current_input_delay > input_delay:
         if Input.is_action_pressed("ui_right"):
-            input_delay = 0
+            current_input_delay = 0
             if move(Vector2.RIGHT):
                 $TickSound.play()
         if Input.is_action_pressed("ui_left"):
-            input_delay = 0
+            current_input_delay = 0
             if move(Vector2.LEFT):
                 $TickSound.play()
         if Input.is_action_pressed("ui_down"):
-            input_delay = 0
+            current_input_delay = 0
             if move(Vector2.DOWN):
                 $TickSound.play()
     if Input.is_action_just_pressed("ui_up"):
@@ -56,8 +68,10 @@ func _process(delta):
     if Input.is_action_just_pressed("hard_drop"):
         hard_drop()
         $HardDropSound.play()
-#    if Input.is_action_just_pressed("hold_piece"):
-#        hold_piece()
+    if Input.is_action_just_pressed("hold_piece"):
+        if isHoldable:
+            hold_piece()
+            return
     board.Board_drawGhost(self)
     board.Board_setPiece(self, false)
 
@@ -97,6 +111,22 @@ func hard_drop():
     lock()
 
 
+func hold_piece():
+    board.Board_clearPiece(self)
+    # Retrieve a held piece if it exists.
+    var held_piece = pieceHolder.PieceHolder_getPiece()
+    if held_piece < GameData.Types.DEFAULT:
+        # Need to add it to the next queue.
+        main.next_queue_push_front(held_piece)
+    # Hold the piece.
+    # TODO(nkuang): consolidate pieceHolder and pieceHolderBoard.
+    pieceHolder.PieceHolder_holdPiece(self.type)
+    pieceHolderBoard.PieceHolderBoard_render(self.type)
+    main.spawn_piece()
+    # Holding is disabled for the next piece.
+    isHoldable = false
+
+
 func lock():
     board.Board_setPiece(self, true)
     board.Board_playTiles()
@@ -104,6 +134,8 @@ func lock():
 
 
 #    can_reserve = true
+    # Once a piece is locked, piece storage cooldown refreshes.
+    isHoldable = true
 
 
 ## Controls piece falling.

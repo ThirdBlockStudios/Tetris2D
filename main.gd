@@ -15,12 +15,12 @@ var next_queue: Array[int] = []
 var spawn_position = Vector2(4, 0)
 
 var game_data
-var tetrominoes
+var TETROMINOES
 
 
 func _init():
     game_data = GameData.new()
-    tetrominoes = game_data.tetrominoes
+    TETROMINOES = game_data.TETROMINOES
 
 
 ## Start game. Called when the node enters the scene tree for the first time.
@@ -46,18 +46,18 @@ func game_over():
 #    held_piece_board.clear()
 
 
-func hold_piece(piece: Piece):
-    # TODO
-    pass
+## Adds a piece to the front of the next queue.
+func next_queue_push_front(input_piece: int):
+    next_queue.push_front(input_piece)
 
 
 func spawn_piece():
     if next_queue.size() < queue_size:
         for i in range(queue_size - next_queue.size()):
-            var random_int = randi() % tetrominoes.size()
+            var random_int = randi() % TETROMINOES.size()
             next_queue.append(random_int)
     var current_piece = next_queue.pop_front()
-    var data = tetrominoes[current_piece]
+    var data = TETROMINOES[current_piece]
     next_queue_board.initialize(next_queue)  # TODO
     piece.initialize(spawn_position, data)
     if board.Board_isMoveValid(piece, spawn_position):

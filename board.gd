@@ -31,7 +31,7 @@ func reset_board():
             set_cell(
                 GameData.Layers.BACKGROUND,
                 Vector2i(x, y),
-                GameData.Types.BACKGROUND,
+                GameData.BACKGROUND,
                 Vector2i(0, 0),
                 0
             )
@@ -69,7 +69,7 @@ func Board_drawGhost(piece: Piece):
         set_cell(
             GameData.Layers.GHOST,
             Vector2i(block.x, block.y),
-            GameData.Types.GHOST,
+            GameData.GHOST,
             Vector2i(0, 0),
             0
         )
