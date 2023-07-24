@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ba45bxkqll0vg"]
+[gd_scene load_steps=25 format=3 uid="uid://ba45bxkqll0vg"]
 
 [ext_resource type="Texture2D" uid="uid://c3mf0kbb3bnh7" path="res://assets/Yellow.png" id="1_kq8sf"]
 [ext_resource type="Texture2D" uid="uid://dtffd0sdj1mbt" path="res://assets/Purple.png" id="2_kemyn"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dppdgwwvl4esk" path="res://assets/Red.png" id="6_7xon3"]
 [ext_resource type="Texture2D" uid="uid://c03j7fe7qliyv" path="res://assets/Cyan.png" id="7_ofvc5"]
 [ext_resource type="Texture2D" uid="uid://ip1pp1wcaes" path="res://assets/Ghost.png" id="8_tr8si"]
+[ext_resource type="Texture2D" uid="uid://jdayh6234d2h" path="res://assets/Grid.png" id="9_kanhe"]
 [ext_resource type="Script" path="res://board.gd" id="10_bfnwc"]
 [ext_resource type="AudioStream" uid="uid://c41d0cd2q4k6e" path="res://assets/A.mp3" id="11_22kkk"]
 [ext_resource type="AudioStream" uid="uid://csilkwm51puie" path="res://assets/G.mp3" id="12_5cllb"]
@@ -54,6 +55,11 @@ texture = ExtResource("8_tr8si")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mho3a"]
+texture = ExtResource("9_kanhe")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_v1vac"]
 tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_yuox3")
@@ -64,10 +70,26 @@ sources/4 = SubResource("TileSetAtlasSource_x5mnx")
 sources/5 = SubResource("TileSetAtlasSource_mvqmc")
 sources/6 = SubResource("TileSetAtlasSource_hiq7t")
 sources/7 = SubResource("TileSetAtlasSource_mjx7b")
+sources/8 = SubResource("TileSetAtlasSource_mho3a")
 
 [node name="Board" type="TileMap"]
 tile_set = SubResource("TileSet_v1vac")
 format = 2
+layer_0/name = "Main_Layer"
+layer_1/name = "Background_Layer"
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = false
+layer_1/y_sort_origin = 0
+layer_1/z_index = -2
+layer_1/tile_data = PackedInt32Array()
+layer_2/name = "Ghost_Layer"
+layer_2/enabled = true
+layer_2/modulate = Color(1, 1, 1, 1)
+layer_2/y_sort_enabled = false
+layer_2/y_sort_origin = 0
+layer_2/z_index = -1
+layer_2/tile_data = PackedInt32Array()
 script = ExtResource("10_bfnwc")
 
 [node name="Timer" type="Timer" parent="."]

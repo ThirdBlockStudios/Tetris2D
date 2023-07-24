@@ -1,29 +1,50 @@
 # Class for main play area.
 class_name MainBoard extends TileMap
 
+# Constants
+
+## Tile length in pixels.
+const TILE_PIXEL_LENGTH = 32
+
 ## Game board dimensions.
-var dimensions = Vector2i(10, 20)
+const dimensions = Vector2i(10, 20)
 
 ## 2D representation of the board grid. Holds true for occupied locked tiles and 0/false for unnoccupied tiles.
 var board = []
 
+## Scenes and nodes.
+var explosion_scene = load("res://explosion.tscn")
+var explosion_node
+
+
 ## Clears the board on load.
 func _ready():
     reset_board()
+
 
 ## Function to initialize/reset the game board.
 func reset_board():
     self.clear()  # Clears the TileMap (MainBoard).
     board.clear()  # Clears the 2D game board.
     for x in range(dimensions.x):
+        for y in range(dimensions.y):
+            set_cell(
+                GameData.Layers.BACKGROUND,
+                Vector2i(x, y),
+                GameData.BACKGROUND,
+                Vector2i(0, 0),
+                0
+            )
+    for x in range(dimensions.x):
         board.append(Array())  # Create an array for each column.
         for y in range(dimensions.y):
             board[x].append(0)  # Initialize each cell with value 0.
 
+
 ## Function to draw a ghost piece on the board (used for indicating the landing position of the current piece).
 func Board_drawGhost(piece: Piece):
-    # Clear the '1' layer (ghost piece layer) on the TileMap.
-    clear_layer(1)
+    # Clear the '2' layer (ghost piece layer) on the TileMap.
+    clear_layer(GameData.Layers.GHOST)
 
     # Calculate the ghost piece position (falling position) and store the blocks in 'ghost_blocks' list.
     var ghost_blocks = piece.blocks.map(func(block): return block + piece.position)
@@ -44,9 +65,15 @@ func Board_drawGhost(piece: Piece):
                 ghost_blocks[i] += Vector2.UP
 
     # Draw the ghost blocks on the '1' layer with tile_id '7' (ghost tile).
-    var ghost_tile_id = 7
     for block in ghost_blocks:
-        set_cell(1, Vector2i(block.x, block.y), ghost_tile_id, Vector2i(0, 0), 0)
+        set_cell(
+            GameData.Layers.GHOST,
+            Vector2i(block.x, block.y),
+            GameData.GHOST,
+            Vector2i(0, 0),
+            0
+        )
+
 
 ## Function to set a piece on the game board (draw the current piece).
 func Board_setPiece(piece: Piece, locked = false):
@@ -56,11 +83,13 @@ func Board_setPiece(piece: Piece, locked = false):
             board[draw_position.x][draw_position.y] = true
         set_cell(0, Vector2i(draw_position), piece.tile_id, Vector2i(0, 0), 0)
 
+
 ## Function to clear a piece from the game board.
 func Board_clearPiece(piece: Piece):
     for block_position in piece.blocks:
         var erase_position = block_position + piece.position
         erase_cell(0, Vector2i(erase_position))
+
 
 ## Function to check if a move is valid for a given piece (collision detection).
 func Board_isMoveValid(piece: Piece, translation: Vector2):
@@ -80,6 +109,7 @@ func Board_isMoveValid(piece: Piece, translation: Vector2):
             return false
     return true
 
+
 ## Function to check if a row is full.
 func Board_isRowFull(row: int) -> bool:
     var is_full = true
@@ -87,11 +117,27 @@ func Board_isRowFull(row: int) -> bool:
         is_full = is_full and board[cols][row]
     return is_full
 
+
 ## Function to clear a row by setting its cells to false (empty).
-func Board_clearRow(row: int):
+## order is an optional parameter to handle multi-row clear animations.
+func Board_clearRow(row: int, order: int = 0):
     for cols in dimensions.x:
+        # First handle the clearing animations.
+        explosion_node = explosion_scene.instantiate()
+        add_child(explosion_node)
+        # We need to account for centering offsets using TILE_PIXEL_LENGTH.
+        var local_coordinates = map_to_local(Vector2i(cols, row))
+        local_coordinates.x = local_coordinates.x - (TILE_PIXEL_LENGTH / 2)
+        local_coordinates.y = (
+            local_coordinates.y - (order * TILE_PIXEL_LENGTH) - (TILE_PIXEL_LENGTH / 2)
+        )
+        explosion_node.Explosion_updateCoordinates(local_coordinates)
+        explosion_node.Explosion_start()
+
+        # Then update board state and Tilemap rendering.
         board[cols][row] = false
         erase_cell(0, Vector2i(cols, row))
+
 
 ## Recursive function to update the board state given a starting row and a step size.
 ## It moves the blocks down by 'step' rows.
@@ -118,14 +164,15 @@ func Board_updateRow(row: int, step: int):
         # Process the rows above (recursively).
         Board_updateRow(row - 1, step)
 
+
 ## Function to process the current tiles on the board and handle clearing full rows.
 func Board_playTiles():
     var current_row = dimensions.y - 1  # Start from the bottom row.
     var rows_cleared = 0
     while current_row >= 0:
         if Board_isRowFull(current_row):
+            Board_clearRow(current_row, rows_cleared)
             rows_cleared += 1
-            Board_clearRow(current_row)
             Board_updateRow(current_row, 1)  # Move the rows above down by 1 step.
         else:
             current_row -= 1  # Move to the row above.

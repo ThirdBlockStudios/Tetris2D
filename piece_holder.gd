@@ -2,11 +2,11 @@ class_name PieceHolder
 extends Node
 
 # Local variables.
-var stored_piece = null
+var stored_piece = GameData.Types.DEFAULT
 
 
 ## Holds a given piece.
-func PieceHolder_holdPiece(piece: GameData.TETROMINO):
+func PieceHolder_holdPiece(piece: GameData.Types):
     stored_piece = piece
 
 
