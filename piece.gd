@@ -23,8 +23,11 @@ var lock_time = 0  ## Helper variable for lock_delay.
 ## Determines if the current piece is holdable.
 var isHoldable = true
 
-@export_range(0, 10, 0.01, "suffix:s") var input_delay = 0.1  ## Hold input movement speed (left or right).
+@export_range(0, 10, 0.01, "suffix:s") var standard_movement_speed = 0.2  ## Input movement speed (left or right) in tick seconds between moves.
+@export_range(0, 10, 0.01, "suffix:s") var hold_movement_speed = 0.07  ## Hold input movement speed (left or right) after lag delay in tick seconds between moves.
+@export_range(0, 10, 0.01, "suffix:s") var lag_delay = 0.45  ## Delay before left right speed accelerates.
 var current_input_delay = 0
+var current_key_held_time = 0  ## Tracks current held time
 
 
 func _ready():
@@ -49,8 +52,12 @@ func initialize(spawn_position: Vector2, piece_data: Dictionary):
 func _process(delta):
     lock_time += delta
     current_input_delay += delta
+    current_key_held_time += delta
     board.Board_clearPiece(self)
-    if current_input_delay > input_delay:
+    if (
+        current_input_delay > standard_movement_speed
+        || (current_key_held_time > lag_delay && current_input_delay > hold_movement_speed) # Piece acceleration applies after a delay (current_key_held_time). This is reset below on key release.
+    ):
         if Input.is_action_pressed("ui_right"):
             current_input_delay = 0
             if move(Vector2.RIGHT):
@@ -63,6 +70,8 @@ func _process(delta):
             current_input_delay = 0
             if move(Vector2.DOWN):
                 $TickSound.play()
+    if Input.is_action_just_released("ui_left") || Input.is_action_just_released("ui_right"): # Resets key held time to delay acceleration on next input.
+        current_key_held_time = 0
     if Input.is_action_just_pressed("ui_up"):
         rotate_piece()
     if Input.is_action_just_pressed("hard_drop"):
@@ -72,6 +81,7 @@ func _process(delta):
         if isHoldable:
             hold_piece()
             return
+
     board.Board_drawGhost(self)
     board.Board_setPiece(self, false)
 
@@ -90,12 +100,14 @@ func move(translation: Vector2) -> bool:
 ## this simplifies down to new_x = -old_y; new_y = old_x.
 func rotate_piece():
     var new_blocks = []
-    var x: int
-    var y: int
+    var x: float
+    var y: float
     for current_block in blocks:
-        x = ceili(-1 * (current_block.y + center_offset.y))
-        y = ceili(current_block.x + center_offset.x)
-        new_blocks.push_back(Vector2(roundi(x), roundi(y)))
+        x = -(current_block.y + center_offset.y)
+        y = current_block.x + center_offset.x
+        x -= center_offset.y
+        y -= center_offset.x
+        new_blocks.push_back(Vector2(x, y))
     var old_blocks = blocks
     blocks = new_blocks
     if board.Board_isMoveValid(self, self.position):
@@ -131,7 +143,6 @@ func lock():
     board.Board_setPiece(self, true)
     board.Board_playTiles()
     main.spawn_piece()
-
 
 #    can_reserve = true
     # Once a piece is locked, piece storage cooldown refreshes.

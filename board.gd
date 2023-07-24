@@ -29,11 +29,7 @@ func reset_board():
     for x in range(dimensions.x):
         for y in range(dimensions.y):
             set_cell(
-                GameData.Layers.BACKGROUND,
-                Vector2i(x, y),
-                GameData.BACKGROUND,
-                Vector2i(0, 0),
-                0
+                GameData.Layers.BACKGROUND, Vector2i(x, y), GameData.BACKGROUND, Vector2i(0, 0), 0
             )
     for x in range(dimensions.x):
         board.append(Array())  # Create an array for each column.
@@ -67,11 +63,7 @@ func Board_drawGhost(piece: Piece):
     # Draw the ghost blocks on the '1' layer with tile_id '7' (ghost tile).
     for block in ghost_blocks:
         set_cell(
-            GameData.Layers.GHOST,
-            Vector2i(block.x, block.y),
-            GameData.GHOST,
-            Vector2i(0, 0),
-            0
+            GameData.Layers.GHOST, Vector2i(block.x, block.y), GameData.GHOST, Vector2i(0, 0), 0
         )
 
 
