@@ -20,9 +20,9 @@ func reset_board():
     for x in range(dimensions.x):
         for y in range(dimensions.y):
             set_cell(
-                GameData.layers.background,
+                GameData.Layers.BACKGROUND,
                 Vector2i(x, y),
-                GameData.types.background,
+                GameData.Types.BACKGROUND,
                 Vector2i(0, 0),
                 0
             )
@@ -35,7 +35,7 @@ func reset_board():
 ## Function to draw a ghost piece on the board (used for indicating the landing position of the current piece).
 func Board_drawGhost(piece: Piece):
     # Clear the '2' layer (ghost piece layer) on the TileMap.
-    clear_layer(GameData.layers.ghost)
+    clear_layer(GameData.Layers.GHOST)
 
     # Calculate the ghost piece position (falling position) and store the blocks in 'ghost_blocks' list.
     var ghost_blocks = piece.blocks.map(func(block): return block + piece.position)
@@ -58,9 +58,9 @@ func Board_drawGhost(piece: Piece):
     # Draw the ghost blocks on the '1' layer with tile_id '7' (ghost tile).
     for block in ghost_blocks:
         set_cell(
-            GameData.layers.ghost,
+            GameData.Layers.GHOST,
             Vector2i(block.x, block.y),
-            GameData.types.ghost,
+            GameData.Types.GHOST,
             Vector2i(0, 0),
             0
         )
