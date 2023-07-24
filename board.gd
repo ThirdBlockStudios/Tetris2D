@@ -47,7 +47,6 @@ func Board_drawGhost(piece: Piece):
                 ghost_blocks[i] += Vector2.UP
 
     # Draw the ghost blocks on the '1' layer with tile_id '7' (ghost tile).
-    var ghost_tile_id = 7
     for block in ghost_blocks:
         set_cell(GameData.ghost_layer, Vector2i(block.x, block.y), GameData.ghost_block_tile_id, Vector2i(0, 0), 0)
 

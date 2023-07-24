@@ -49,6 +49,5 @@ var tetrominoes = {
         line,
         [Vector2(-1, 0), Vector2(0, 0), Vector2(1, 0), Vector2(2, 0)],
         Vector2(-0.5, -0.5)
-    ),
+    )
 }
-    
