@@ -12,9 +12,9 @@ var tile_id: int
 var center_offset
 var blocks  #Array[Vector2] # hold grid position of child blocks
 
-var step_delay = 0.5 ## Fall//tick speed in seconds.
-var lock_delay = 0.5 ## Grace time for lock in seconds.
-var lock_time = 0 ## Helper variable for lock_delay.
+var step_delay = 0.5  ## Fall//tick speed in seconds.
+var lock_delay = 0.5  ## Grace time for lock in seconds.
+var lock_time = 0  ## Helper variable for lock_delay.
 @export_range(0, 10, 0.01, "suffix:s") var input_delay = 0.1  ## Hold input movement speed (left or right).
 
 
@@ -27,8 +27,8 @@ func initialize(spawn_position: Vector2, piece_data):
     position = spawn_position
     data = piece_data
     tile_id = piece_data.tile_id
-    blocks = piece_data.blocks
-    center_offset = piece_data.center_offset
+    blocks = piece_data.block_grid_coordinates
+    center_offset = piece_data.rotation_center_offset
 #    current_rotation_index = 3
     $Ticker.start(step_delay)
     lock_time = 0.0
@@ -77,9 +77,9 @@ func move(translation: Vector2) -> bool:
 func rotate_piece():
     var new_blocks = []
     var x: int
-    var y: int    
+    var y: int
     for current_block in blocks:
-        x = ceili(-1 *(current_block.y + center_offset.y))
+        x = ceili(-1 * (current_block.y + center_offset.y))
         y = ceili(current_block.x + center_offset.x)
         new_blocks.push_back(Vector2(roundi(x), roundi(y)))
     var old_blocks = blocks
@@ -89,7 +89,7 @@ func rotate_piece():
         return
     else:
         blocks = old_blocks
-        
+
 
 func hard_drop():
     while move(Vector2.DOWN):
@@ -101,6 +101,8 @@ func lock():
     board.Board_setPiece(self, true)
     board.Board_playTiles()
     main.spawn_piece()
+
+
 #    can_reserve = true
 
 

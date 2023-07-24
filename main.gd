@@ -14,15 +14,13 @@ var next_queue: Array[int] = []
 
 var spawn_position = Vector2(4, 0)
 
-var tetrominoes = {
-    GameData.TETROMINO.square: {},
-    GameData.TETROMINO.tee: {},
-    GameData.TETROMINO.l_left: {},
-    GameData.TETROMINO.l_right: {},
-    GameData.TETROMINO.zag_right: {},
-    GameData.TETROMINO.zag_left: {},
-    GameData.TETROMINO.line: {}
-}
+var game_data
+var tetrominoes
+
+
+func _init():
+    game_data = GameData.new()
+    tetrominoes = game_data.tetrominoes
 
 
 ## Start game. Called when the node enters the scene tree for the first time.
@@ -34,14 +32,6 @@ func _ready():
 
     randomize()  # randomize rng seed
 
-    # Set game constants (cell arrangements, tile type map)
-    for i in GameData.TETROMINO:
-        tetrominoes[GameData.TETROMINO[i]] = {
-            "type": GameData.TETROMINO[i],
-            "blocks": GameData.blocks[GameData.TETROMINO[i]],
-            "tile_id": GameData.tile_ids[GameData.TETROMINO[i]],
-            "center_offset": GameData.center_offset[GameData.TETROMINO[i]]
-        }
     board.reset_board()
     spawn_piece()
 
@@ -74,11 +64,6 @@ func spawn_piece():
         board.Board_setPiece(piece)
     else:
         game_over()
-
-
-## Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-    pass
 
 
 ## This is the game's main loop called every game tick. It is primarily responsible for updating the active piece's position (falling).
