@@ -24,8 +24,8 @@ var lock_time = 0  ## Helper variable for lock_delay.
 var isHoldable = true
 
 @export_range(0, 10, 0.01, "suffix:s") var standard_movement_speed = 0.2  ## Input movement speed (left or right) in tick seconds between moves.
-@export_range(0, 10, 0.01, "suffix:s") var hold_movement_speed = 0.05  ## Hold input movement speed (left or right) after lag delay in tick seconds between moves.
-@export_range(0, 10, 0.01, "suffix:s") var lag_delay = 0.25  ## Delay before left right speed accelerates.
+@export_range(0, 10, 0.01, "suffix:s") var hold_movement_speed = 0.07  ## Hold input movement speed (left or right) after lag delay in tick seconds between moves.
+@export_range(0, 10, 0.01, "suffix:s") var lag_delay = 0.45  ## Delay before left right speed accelerates.
 var current_input_delay = 0
 var current_key_held_time = 0 ## Tracks current held time
 
@@ -97,12 +97,14 @@ func move(translation: Vector2) -> bool:
 ## this simplifies down to new_x = -old_y; new_y = old_x.
 func rotate_piece():
     var new_blocks = []
-    var x: int
-    var y: int
+    var x: float
+    var y: float
     for current_block in blocks:
-        x = ceili(-1 * (current_block.y + center_offset.y))
-        y = ceili(current_block.x + center_offset.x)
-        new_blocks.push_back(Vector2(roundi(x), roundi(y)))
+        x = -(current_block.y + center_offset.y)
+        y = current_block.x + center_offset.x
+        x -= center_offset.y
+        y -= center_offset.x
+        new_blocks.push_back(Vector2(x, y))
     var old_blocks = blocks
     blocks = new_blocks
     if board.Board_isMoveValid(self, self.position):
