@@ -8,10 +8,10 @@ var rotation_center_offset: Vector2  ## Offset (from 0, 0?) around which the blo
 
 ## Constructor called on Tetromino.new()
 func _init(
-	tile_id: int,
-	block_grid_coordinates: Array[Vector2],
-	rotation_center_offset: Vector2 = Vector2(0, 0)
+    tile_id: int,
+    block_grid_coordinates: Array[Vector2],
+    rotation_center_offset: Vector2 = Vector2(0, 0)
 ):
-	self.tile_id = tile_id
-	self.block_grid_coordinates = block_grid_coordinates
-	self.rotation_center_offset = rotation_center_offset
+    self.tile_id = tile_id
+    self.block_grid_coordinates = block_grid_coordinates
+    self.rotation_center_offset = rotation_center_offset
