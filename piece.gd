@@ -27,7 +27,7 @@ var isHoldable = true
 @export_range(0, 10, 0.01, "suffix:s") var hold_movement_speed = 0.07  ## Hold input movement speed (left or right) after lag delay in tick seconds between moves.
 @export_range(0, 10, 0.01, "suffix:s") var lag_delay = 0.45  ## Delay before left right speed accelerates.
 var current_input_delay = 0
-var current_key_held_time = 0 ## Tracks current held time
+var current_key_held_time = 0  ## Tracks current held time
 
 
 func _ready():
@@ -54,7 +54,10 @@ func _process(delta):
     current_input_delay += delta
     current_key_held_time += delta
     board.Board_clearPiece(self)
-    if current_input_delay > standard_movement_speed || (current_key_held_time > lag_delay && current_input_delay > hold_movement_speed):
+    if (
+        current_input_delay > standard_movement_speed
+        || (current_key_held_time > lag_delay && current_input_delay > hold_movement_speed)
+    ):
         if Input.is_action_pressed("ui_right"):
             current_input_delay = 0
             if move(Vector2.RIGHT):
@@ -78,7 +81,7 @@ func _process(delta):
         if isHoldable:
             hold_piece()
             return
-        
+
     board.Board_drawGhost(self)
     board.Board_setPiece(self, false)
 
@@ -140,7 +143,6 @@ func lock():
     board.Board_setPiece(self, true)
     board.Board_playTiles()
     main.spawn_piece()
-
 
 #    can_reserve = true
     # Once a piece is locked, piece storage cooldown refreshes.

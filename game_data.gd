@@ -5,73 +5,64 @@ const COSINE = cos(PI / 2)  ## = 0
 const SINE = sin(PI / 2)  ## = 1
 const ROTATION_MATRIX = [COSINE, SINE, -SINE, COSINE]  ## Rotation constants for 90 degree clockwise rotation. Refer here for more information about the math https://www.cuemath.com/algebra/rotation-matrix/.
 
-
 ## Piece definitions
-enum Types { SQUARE, TEE, L_LEFT, L_RIGHT, ZAG_RIGHT, ZAG_LEFT, LINE, DOUBLE_SQUARE, POG, DEFAULT }
+enum Types { SQUARE, TEE, L_LEFT, L_RIGHT, ZAG_RIGHT, ZAG_LEFT, LINE, DEFAULT }
 
-
-const GHOST = 7 ## Tile map id for ghost back sprite
-const BACKGROUND = 8 ## Tile map id for background sprite
-
+const GHOST = 7  ## Tile map id for ghost back sprite
+const BACKGROUND = 8  ## Tile map id for background sprite
 
 ## Board tile map Layers.
 enum Layers { GAME, BACKGROUND, GHOST }
 
-
 ## Tetrominoes available to spawn in game.
 const TETROMINOES = {
-    Types.SQUARE: {
+    Types.SQUARE:
+    {
         "type": Types.SQUARE,
-        "tile_id": Types.SQUARE, # Tile ID
-        "block_grid_coordinates": [Vector2(0, 0), Vector2(0, 1), Vector2(1, 0), Vector2(1, 1)], # Block grid coordinates
+        "tile_id": Types.SQUARE,  # Tile ID
+        "block_grid_coordinates": [Vector2(0, 0), Vector2(0, 1), Vector2(1, 0), Vector2(1, 1)],  # Block grid coordinates
         "rotation_center_offset": Vector2(-0.5, -0.5)  # Rotation center offset
     },
-    Types.TEE: {
+    Types.TEE:
+    {
         "type": Types.TEE,
-        "tile_id": Types.TEE, # Tile ID
-        "block_grid_coordinates": [Vector2(-1, 0), Vector2(0, 0), Vector2(0, -1), Vector2(1, 0)], # Block grid coordinates
+        "tile_id": Types.TEE,  # Tile ID
+        "block_grid_coordinates": [Vector2(-1, 0), Vector2(0, 0), Vector2(0, -1), Vector2(1, 0)],  # Block grid coordinates
         "rotation_center_offset": Vector2(0, 0)  # Rotation center offset
     },
-    Types.L_LEFT: {
+    Types.L_LEFT:
+    {
         "type": Types.L_LEFT,
-        "tile_id": Types.L_LEFT, # Tile ID
-        "block_grid_coordinates": [Vector2(-1, -1), Vector2(-1, 0), Vector2(0, 0), Vector2(1, 0)], # Block grid coordinates
+        "tile_id": Types.L_LEFT,  # Tile ID
+        "block_grid_coordinates": [Vector2(-1, -1), Vector2(-1, 0), Vector2(0, 0), Vector2(1, 0)],  # Block grid coordinates
         "rotation_center_offset": Vector2(0, 0)  # Rotation center offset
     },
-    Types.L_RIGHT: {
+    Types.L_RIGHT:
+    {
         "type": Types.L_RIGHT,
-        "tile_id": Types.L_RIGHT, # Tile ID
-        "block_grid_coordinates": [Vector2(-1, 0), Vector2(0, 0), Vector2(1, 0), Vector2(1, -1)], # Block grid coordinates
+        "tile_id": Types.L_RIGHT,  # Tile ID
+        "block_grid_coordinates": [Vector2(-1, 0), Vector2(0, 0), Vector2(1, 0), Vector2(1, -1)],  # Block grid coordinates
         "rotation_center_offset": Vector2(0, 0)  # Rotation center offset
     },
-    Types.ZAG_LEFT: {
+    Types.ZAG_LEFT:
+    {
         "type": Types.ZAG_LEFT,
-        "tile_id": Types.ZAG_LEFT, # Tile ID
-        "block_grid_coordinates": [Vector2(-1, 0), Vector2(0, 0), Vector2(0, -1), Vector2(1, -1)], # Block grid coordinates
+        "tile_id": Types.ZAG_LEFT,  # Tile ID
+        "block_grid_coordinates": [Vector2(-1, 0), Vector2(0, 0), Vector2(0, -1), Vector2(1, -1)],  # Block grid coordinates
         "rotation_center_offset": Vector2(0, 0)  # Rotation center offset
     },
-    Types.ZAG_RIGHT: {
+    Types.ZAG_RIGHT:
+    {
         "type": Types.ZAG_RIGHT,
-        "tile_id": Types.ZAG_RIGHT, # Tile ID
-        "block_grid_coordinates": [Vector2(-1, -1), Vector2(0, -1), Vector2(0, 0), Vector2(1, 0)], # Block grid coordinates
+        "tile_id": Types.ZAG_RIGHT,  # Tile ID
+        "block_grid_coordinates": [Vector2(-1, -1), Vector2(0, -1), Vector2(0, 0), Vector2(1, 0)],  # Block grid coordinates
         "rotation_center_offset": Vector2(0, 0)  # Rotation center offset
     },
-    Types.LINE: {
+    Types.LINE:
+    {
         "type": Types.LINE,
-        "tile_id": Types.LINE, # Tile ID
-        "block_grid_coordinates": [Vector2(-1, 0), Vector2(0, 0), Vector2(1, 0), Vector2(2, 0)], # Block grid coordinates
+        "tile_id": Types.LINE,  # Tile ID
+        "block_grid_coordinates": [Vector2(-1, 0), Vector2(0, 0), Vector2(1, 0), Vector2(2, 0)],  # Block grid coordinates
         "rotation_center_offset": Vector2(-0.5, -0.5)  # Rotation center offset
-    },
-    Types.DOUBLE_SQUARE: {
-        "type": Types.DOUBLE_SQUARE,
-        "tile_id": Types.SQUARE, # Tile ID
-        "block_grid_coordinates": [Vector2(-1, 0), Vector2(0, 0), Vector2(1, 0), Vector2(2, 0), Vector2(-1, -1), Vector2(0, -1), Vector2(1, -1), Vector2(2, -1)], # Block grid coordinates
-        "rotation_center_offset": Vector2(-0.5, -0.5)  # Rotation center offset
-    },
-    Types.POG: {
-        "type": Types.POG,
-        "tile_id": Types.TEE, # Tile ID
-        "block_grid_coordinates": [Vector2(0, 0), Vector2(1, 0), Vector2(0, 1), Vector2(-1, -2), Vector2(-2, -2)], # Block grid coordinates
-        "rotation_center_offset": Vector2(0.5, 0.5)  # Rotation center offset
     }
 }
