@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://ba45bxkqll0vg"]
+[gd_scene load_steps=27 format=3 uid="uid://ba45bxkqll0vg"]
 
 [ext_resource type="Texture2D" uid="uid://c3mf0kbb3bnh7" path="res://assets/Yellow.png" id="1_kq8sf"]
 [ext_resource type="Texture2D" uid="uid://dtffd0sdj1mbt" path="res://assets/Purple.png" id="2_kemyn"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://c03j7fe7qliyv" path="res://assets/Cyan.png" id="7_ofvc5"]
 [ext_resource type="Texture2D" uid="uid://ip1pp1wcaes" path="res://assets/Ghost.png" id="8_tr8si"]
 [ext_resource type="Texture2D" uid="uid://jdayh6234d2h" path="res://assets/Grid.png" id="9_kanhe"]
+[ext_resource type="Texture2D" uid="uid://c1hwe8gu3g4iq" path="res://assets/piece_clear/piece-clear-120ppr.png" id="10_40a8b"]
 [ext_resource type="Script" path="res://board.gd" id="10_bfnwc"]
 [ext_resource type="AudioStream" uid="uid://c41d0cd2q4k6e" path="res://assets/A.mp3" id="11_22kkk"]
 [ext_resource type="AudioStream" uid="uid://csilkwm51puie" path="res://assets/G.mp3" id="12_5cllb"]
@@ -23,6 +24,33 @@ texture_region_size = Vector2i(32, 32)
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uab7s"]
 texture = ExtResource("2_kemyn")
 texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h3fah"]
+texture = ExtResource("10_40a8b")
+texture_region_size = Vector2i(32, 32)
+0:0/animation_columns = 20
+0:0/animation_speed = 30.0
+0:0/animation_frame_0/duration = 1.0
+0:0/animation_frame_1/duration = 1.0
+0:0/animation_frame_2/duration = 1.0
+0:0/animation_frame_3/duration = 1.0
+0:0/animation_frame_4/duration = 1.0
+0:0/animation_frame_5/duration = 1.0
+0:0/animation_frame_6/duration = 1.0
+0:0/animation_frame_7/duration = 1.0
+0:0/animation_frame_8/duration = 1.0
+0:0/animation_frame_9/duration = 1.0
+0:0/animation_frame_10/duration = 1.0
+0:0/animation_frame_11/duration = 1.0
+0:0/animation_frame_12/duration = 1.0
+0:0/animation_frame_13/duration = 1.0
+0:0/animation_frame_14/duration = 1.0
+0:0/animation_frame_15/duration = 1.0
+0:0/animation_frame_16/duration = 1.0
+0:0/animation_frame_17/duration = 1.0
+0:0/animation_frame_18/duration = 1.0
+0:0/animation_frame_19/duration = 1.0
 0:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nsedr"]
@@ -71,6 +99,7 @@ sources/5 = SubResource("TileSetAtlasSource_mvqmc")
 sources/6 = SubResource("TileSetAtlasSource_hiq7t")
 sources/7 = SubResource("TileSetAtlasSource_mjx7b")
 sources/8 = SubResource("TileSetAtlasSource_mho3a")
+sources/10 = SubResource("TileSetAtlasSource_h3fah")
 
 [node name="Board" type="TileMap"]
 tile_set = SubResource("TileSet_v1vac")
@@ -90,6 +119,13 @@ layer_2/y_sort_enabled = false
 layer_2/y_sort_origin = 0
 layer_2/z_index = -1
 layer_2/tile_data = PackedInt32Array()
+layer_3/name = "Clear_Layer"
+layer_3/enabled = true
+layer_3/modulate = Color(1, 1, 1, 1)
+layer_3/y_sort_enabled = false
+layer_3/y_sort_origin = 0
+layer_3/z_index = 3
+layer_3/tile_data = PackedInt32Array()
 script = ExtResource("10_bfnwc")
 
 [node name="Timer" type="Timer" parent="."]

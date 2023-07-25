@@ -54,7 +54,8 @@ func next_queue_push_front(input_piece: int):
 func spawn_piece():
     if next_queue.size() < queue_size:
         for i in range(queue_size - next_queue.size()):
-            var random_int = randi() % TETROMINOES.size()
+#            var random_int = randi() % TETROMINOES.size()
+            var random_int = 6
             next_queue.append(random_int)
     var current_piece = next_queue.pop_front()
     var data = TETROMINOES[current_piece]

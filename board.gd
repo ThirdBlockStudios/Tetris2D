@@ -115,21 +115,33 @@ func Board_isRowFull(row: int) -> bool:
 func Board_clearRow(row: int, order: int = 0):
     for cols in dimensions.x:
         # First handle the clearing animations.
-        explosion_node = explosion_scene.instantiate()
-        add_child(explosion_node)
-        # We need to account for centering offsets using TILE_PIXEL_LENGTH.
-        var local_coordinates = map_to_local(Vector2i(cols, row))
-        local_coordinates.x = local_coordinates.x - (TILE_PIXEL_LENGTH / 2)
-        local_coordinates.y = (
-            local_coordinates.y - (order * TILE_PIXEL_LENGTH) - (TILE_PIXEL_LENGTH / 2)
-        )
-        explosion_node.Explosion_updateCoordinates(local_coordinates)
-        explosion_node.Explosion_start()
-
-        # Then update board state and Tilemap rendering.
+#        explosion_node = explosion_scene.instantiate()
+#        add_child(explosion_node)
+#        # We need to account for centering offsets using TILE_PIXEL_LENGTH.
+#        var local_coordinates = map_to_local(Vector2i(cols, row))
+#        local_coordinates.x = local_coordinates.x - (TILE_PIXEL_LENGTH / 2)
+#        local_coordinates.y = (
+#            local_coordinates.y - (order * TILE_PIXEL_LENGTH) - (TILE_PIXEL_LENGTH / 2)
+#        )
+#        explosion_node.Explosion_updateCoordinates(local_coordinates)
+#        explosion_node.Explosion_start()
         board[cols][row] = false
         erase_cell(0, Vector2i(cols, row))
-
+#        set_cell(0, Vector2i(cols, row), 10, Vector2i(0, 0), 0)
+#        await get_tree().create_timer(1).timeout
+#
+##        # Then update board state and Tilemap rendering.
+##        board[cols][row] = false
+#        erase_cell(0, Vector2i(cols, row))
+    
+    for cols in dimensions.x:
+        draw_anim(cols, row)
+        await get_tree().create_timer(0.03).timeout
+        
+func draw_anim(cols, row):
+    set_cell(GameData.Layers.CLEAR_ANIMATION, Vector2i(cols, row), 10, Vector2i(0, 0), 0)
+    await get_tree().create_timer(0.15).timeout
+    erase_cell(GameData.Layers.CLEAR_ANIMATION, Vector2i(cols, row))
 
 ## Recursive function to update the board state given a starting row and a step size.
 ## It moves the blocks down by 'step' rows.
