@@ -12,7 +12,7 @@ const GHOST = 7  ## Tile map id for ghost back sprite
 const BACKGROUND = 8  ## Tile map id for background sprite
 
 ## Board tile map Layers.
-enum Layers { GAME, BACKGROUND, GHOST }
+enum Layers { GAME, BACKGROUND, GHOST, CLEAR_ANIMATION }
 
 ## Tetrominoes available to spawn in game.
 const TETROMINOES = {
