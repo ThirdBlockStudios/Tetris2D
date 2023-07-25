@@ -27,7 +27,9 @@ func _init():
 func _ready():
     board = get_tree().get_first_node_in_group("board")
     piece = get_tree().get_first_node_in_group("piece")
-
+    var tile_set_copy = board.tile_set
+    get_tree().get_first_node_in_group("piece_holder_board").tile_set = tile_set_copy
+    
     spawn_position = Vector2(floori(board.dimensions.x / 2), 0)
 
     randomize()  # randomize rng seed

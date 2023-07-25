@@ -48,14 +48,18 @@ func initialize(spawn_position: Vector2, piece_data: Dictionary):
     $Ticker.start(step_delay)
     lock_time = 0.0
 
+var spam_threshold = 0.01
+var spam_counter = 0
 
 func _process(delta):
     lock_time += delta
     current_input_delay += delta
-    current_key_held_time += delta
     board.Board_clearPiece(self)
+    if (Input.is_action_pressed("ui_right") || Input.is_action_pressed("ui_left") || Input.is_action_pressed("ui_down")):
+        current_key_held_time += delta
     if (
-        current_input_delay > standard_movement_speed
+        current_key_held_time <= spam_threshold ## Allows spamming keys
+        || current_input_delay > standard_movement_speed
         || (current_key_held_time > lag_delay && current_input_delay > hold_movement_speed) # Piece acceleration applies after a delay (current_key_held_time). This is reset below on key release.
     ):
         if Input.is_action_pressed("ui_right"):

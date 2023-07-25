@@ -124,7 +124,7 @@ func Board_clearRow(row: int, order: int = 0):
             local_coordinates.y - (order * TILE_PIXEL_LENGTH) - (TILE_PIXEL_LENGTH / 2)
         )
         explosion_node.Explosion_updateCoordinates(local_coordinates)
-        explosion_node.Explosion_start()
+        explosion_node.Explosion_start(cols*0.04)
 
         # Then update board state and Tilemap rendering.
         board[cols][row] = false

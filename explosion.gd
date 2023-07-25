@@ -9,6 +9,7 @@ extends Node2D
 ## animation will loop.
 func Explosion_stop():
     animated_sprite.stop()
+    queue_free()
 
 
 ## Moves the current animation position to coordinates (px).
@@ -18,5 +19,6 @@ func Explosion_updateCoordinates(coordinates: Vector2i):
 
 
 ## Starts the animation.
-func Explosion_start():
+func Explosion_start(delay_in_seconds: float):
+    await await get_tree().create_timer(delay_in_seconds).timeout
     animated_sprite.play()
