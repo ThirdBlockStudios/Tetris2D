@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cpijr2jc7jqon"
-path="res://.godot/imported/piece-clear-120ppr.png-40aa6be46014331711980a969db69960.ctex"
+uid="uid://d2e17v5x5qx0g"
+path="res://.godot/imported/sprite_6.png-208625839b70b147fd516c22ac2740f9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/piece_clear/piece-clear-120ppr.png"
-dest_files=["res://.godot/imported/piece-clear-120ppr.png-40aa6be46014331711980a969db69960.ctex"]
+source_file="res://python-scripts/sprite_images/sprite_6.png"
+dest_files=["res://.godot/imported/sprite_6.png-208625839b70b147fd516c22ac2740f9.ctex"]
 
 [params]
 
