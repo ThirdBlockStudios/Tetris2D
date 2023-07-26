@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://c03j7fe7qliyv" path="res://assets/Cyan.png" id="7_ofvc5"]
 [ext_resource type="Texture2D" uid="uid://ip1pp1wcaes" path="res://assets/Ghost.png" id="8_tr8si"]
 [ext_resource type="Texture2D" uid="uid://jdayh6234d2h" path="res://assets/Grid.png" id="9_kanhe"]
-[ext_resource type="Texture2D" uid="uid://c1hwe8gu3g4iq" path="res://assets/piece_clear/piece-clear-120ppr.png" id="10_40a8b"]
 [ext_resource type="Script" path="res://board.gd" id="10_bfnwc"]
 [ext_resource type="AudioStream" uid="uid://c41d0cd2q4k6e" path="res://assets/A.mp3" id="11_22kkk"]
 [ext_resource type="AudioStream" uid="uid://csilkwm51puie" path="res://assets/G.mp3" id="12_5cllb"]
@@ -26,8 +25,11 @@ texture = ExtResource("2_kemyn")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_v6qt0"]
+load_path = "res://.godot/imported/piece-clear-120ppr.png-40aa6be46014331711980a969db69960.ctex"
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h3fah"]
-texture = ExtResource("10_40a8b")
+texture = SubResource("CompressedTexture2D_v6qt0")
 texture_region_size = Vector2i(32, 32)
 0:0/animation_columns = 20
 0:0/animation_speed = 30.0
@@ -40,17 +42,6 @@ texture_region_size = Vector2i(32, 32)
 0:0/animation_frame_6/duration = 1.0
 0:0/animation_frame_7/duration = 1.0
 0:0/animation_frame_8/duration = 1.0
-0:0/animation_frame_9/duration = 1.0
-0:0/animation_frame_10/duration = 1.0
-0:0/animation_frame_11/duration = 1.0
-0:0/animation_frame_12/duration = 1.0
-0:0/animation_frame_13/duration = 1.0
-0:0/animation_frame_14/duration = 1.0
-0:0/animation_frame_15/duration = 1.0
-0:0/animation_frame_16/duration = 1.0
-0:0/animation_frame_17/duration = 1.0
-0:0/animation_frame_18/duration = 1.0
-0:0/animation_frame_19/duration = 1.0
 0:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nsedr"]
