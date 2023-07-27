@@ -3,7 +3,7 @@ class_name MainScript
 extends Node
 
 #@onready var held_piece_board = get_tree().get_first_node_in_group('held_piece')
-@onready var next_queue_board = get_tree().get_first_node_in_group("next_queue")
+@onready var next_queue_board : NextQueue = get_tree().get_first_node_in_group("next_queue")
 
 var board: MainBoard
 var piece: Piece
@@ -29,6 +29,7 @@ func _ready():
     piece = get_tree().get_first_node_in_group("piece")
 
     spawn_position = Vector2(floori(board.dimensions.x / 2), 0)
+    next_queue_board.tile_set = board.tile_set
 
     randomize()  # randomize rng seed
 

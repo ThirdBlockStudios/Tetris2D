@@ -74,13 +74,14 @@ wait_time = 0.25
 layer_1/name = ""
 
 [node name="NextQueue" parent="." groups=["next_queue"] instance=ExtResource("4_tt8a5")]
+position = Vector2(384, 192)
 
 [node name="GameOverSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_olbs2")
 
 [node name="PieceHolderBoard" type="TileMap" parent="." groups=["piece_holder_board"]]
 z_as_relative = false
-position = Vector2(384, 128)
+position = Vector2(400, 72)
 tile_set = SubResource("TileSet_t1ig7")
 format = 2
 layer_0/z_index = 1
@@ -107,5 +108,12 @@ script = ExtResource("15_jxyhf")
 [node name="Lines" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 script = ExtResource("16_gj66o")
+
+[node name="HoldPieceArea" type="ColorRect" parent="."]
+offset_left = 336.0
+offset_top = 24.0
+offset_right = 496.0
+offset_bottom = 128.0
+color = Color(0, 0, 0, 1)
 
 [connection signal="timeout" from="TickTimer" to="." method="_on_tick"]

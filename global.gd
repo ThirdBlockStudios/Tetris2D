@@ -1,6 +1,7 @@
 extends Node
 
 # Global variables.
+var tile_size = 32
 
 ## Overall game score.
 var score = 0
