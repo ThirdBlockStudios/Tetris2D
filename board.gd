@@ -76,7 +76,7 @@ func Board_setPiece(piece: Piece, locked = false):
     for block_position in piece.blocks:
         var draw_position = block_position + piece.position
         if locked:
-            Global.score += (randi() % 5)
+            Global.Global_updateScores(randi() % 5, 0)
             board[draw_position.x][draw_position.y] = true
         set_cell(0, Vector2i(draw_position), piece.tile_id, Vector2i(0, 0), 0)
 
@@ -133,9 +133,8 @@ func Board_clearRow(row: int, order: int = 0):
         explosion_node.ClearAnimation_start(cols * anim_column_delay * (order + anim_order_delay))
         board[cols][row] = false
         erase_cell(0, Vector2i(cols, row))
-    # Update scores.
-    Global.score += ((order + 1) * 10)  # Temporary, tune formula later.
-    Global.lines += 1
+    # Update scores. Reward multiline clears.
+    Global.Global_updateScores((order + 1) * 10, 1)
 
 
 ## Recursive function to update the board state given a starting row and a step size.
