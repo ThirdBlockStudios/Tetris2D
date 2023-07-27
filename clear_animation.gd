@@ -1,4 +1,4 @@
-class_name Explosion
+class_name ClearAnimation
 extends Node2D
 
 # Local variables.

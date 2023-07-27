@@ -16,6 +16,10 @@ config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 run/size/viewport_width=480
 
+[autoload]
+
+Global="*res://global.gd"
+
 [display]
 
 window/size/viewport_width=512
