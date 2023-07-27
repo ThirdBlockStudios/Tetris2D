@@ -53,8 +53,8 @@ func _process(delta):
     lock_time += delta
     current_input_delay += delta
     board.Board_clearPiece(self)
-    # TODO(nkuang): Accelerate piece drop speed depending on level.
-    # $Ticker.wait_time = f(Global.level)
+    # Accelerate piece drop speed depending on level.
+    $Ticker.wait_time = Global.speed_map[Global.level]
     if (
         current_key_held_time == 0
         || current_input_delay > standard_movement_speed
