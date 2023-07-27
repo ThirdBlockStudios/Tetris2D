@@ -558,7 +558,7 @@ animations = [{
 "speed": 20.0
 }]
 
-[node name="Explosion" type="Node2D"]
+[node name="ClearAnimation" type="Node2D"]
 script = ExtResource("1_xl1b1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -568,4 +568,4 @@ animation = &"piece_clear_2"
 frame = 9
 frame_progress = 1.0
 
-[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="Explosion_stop"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="ClearAnimation_stop"]
