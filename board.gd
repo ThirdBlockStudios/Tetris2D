@@ -128,9 +128,9 @@ func Board_clearRow(row: int, order: int = 0):
         local_coordinates.y = (
             local_coordinates.y - (order * TILE_PIXEL_LENGTH) - (TILE_PIXEL_LENGTH / 2)
         )
-        explosion_node.Explosion_updateCoordinates(local_coordinates)
+        explosion_node.ClearAnimation_updateCoordinates(local_coordinates)
         # Apply delay based on column and order (for multiline clears).
-        explosion_node.Explosion_start(cols * anim_column_delay * (order + anim_order_delay))
+        explosion_node.ClearAnimation_start(cols * anim_column_delay * (order + anim_order_delay))
         board[cols][row] = false
         erase_cell(0, Vector2i(cols, row))
     # Update scores.

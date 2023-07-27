@@ -568,4 +568,4 @@ animation = &"piece_clear_2"
 frame = 9
 frame_progress = 1.0
 
-[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="Explosion_stop"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="ClearAnimation_stop"]
