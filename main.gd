@@ -40,6 +40,7 @@ func game_over():
     $GameOverSound.play()
     board.reset_board()
     spawn_piece()
+    Global.Global_resetScores()
 
 
 #    held_piece = null
